@@ -5,218 +5,273 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI / Machine Learning / Data Science — Nooh Khan Portfolio</title>
 <meta name="description" content="AI, Machine Learning, and Data Science specialization of Nooh Khan: Enterprise digital twins, agentic workflows, RAG knowledge intelligence, and MLOps platforms.">
-
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-dark: #060B12;
-    --bg-card: rgba(15, 23, 42, 0.75);
-    --bg-card-solid: #0F172A;
-    --bg-card-hover: rgba(30, 41, 59, 0.9);
-
-    --text-bright: #F8FAFC;
-    --text-muted: #94A3B8;
-    --text-subtle: #64748B;
-
-    --sky-primary: #0EA5E9;
-    --sky-light: #38BDF8;
-    --sky-glow: rgba(14, 165, 233, 0.22);
-
-    --emerald-primary: #10B981;
-    --emerald-light: #34D399;
-
-    --line: rgba(56, 189, 248, 0.16);
-    --line-strong: rgba(56, 189, 248, 0.32);
-
-    --radius: 8px;
-    --display: 'Sora', sans-serif;
-    --body: 'IBM Plex Sans', sans-serif;
-    --mono: 'IBM Plex Mono', monospace;
-    --maxw: 1140px;
+    --bg-dark: #060B12; --bg-card: rgba(15,23,42,0.75); --bg-card-solid: #0F172A;
+    --bg-card-hover: rgba(30,41,59,0.9); --text-bright: #F8FAFC; --text-muted: #94A3B8;
+    --text-subtle: #64748B; --sky-primary: #0EA5E9; --sky-light: #38BDF8;
+    --sky-glow: rgba(14,165,233,0.25); --emerald-primary: #10B981; --emerald-light: #34D399;
+    --emerald-glow: rgba(16,185,129,0.25); --line: rgba(56,189,248,0.16);
+    --line-strong: rgba(56,189,248,0.32); --radius: 10px;
+    --display: 'Sora', sans-serif; --body: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace; --maxw: 1200px;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body {
     background-color: var(--bg-dark);
-    background-image:
-      radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.12) 0%, transparent 60%),
-      radial-gradient(circle at 80% 30%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
-      radial-gradient(circle, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-image: radial-gradient(circle at 50% 0%, rgba(14,165,233,0.12) 0%, transparent 60%),
+      radial-gradient(circle at 85% 40%, rgba(16,185,129,0.08) 0%, transparent 50%),
+      radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
     background-size: 100% 100%, 100% 100%, 28px 28px;
-    color: var(--text-bright);
-    font-family: var(--body);
-    line-height: 1.65;
+    color: var(--text-bright); font-family: var(--body); line-height: 1.65; overflow-x: hidden;
   }
-
+  ::selection { background: var(--emerald-primary); color: #fff; }
   a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 
-  /* Custom Cursor */
-  .cursor-dot { width: 6px; height: 6px; background: var(--sky-light); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); box-shadow: 0 0 10px var(--sky-primary); }
-  .cursor-ring { width: 28px; height: 28px; border: 1px solid rgba(56, 189, 248, 0.5); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: transform 0.15s ease; }
-
+  /* Nav */
   header.site-nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(6, 11, 18, 0.92); backdrop-filter: blur(12px);
+    position: sticky; top: 0; z-index: 1000;
+    background: rgba(6,11,18,0.93); backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line-strong);
   }
-  .nav-inner {
-    max-width: var(--maxw); margin: 0 auto; padding: 16px 24px;
-    display: flex; align-items: center; justify-content: space-between;
+  header.site-nav::after {
+    content:''; display:block; height:2px; width:100%;
+    background: linear-gradient(90deg, var(--sky-primary), var(--emerald-primary), var(--sky-light));
   }
-  .brand { font-family: var(--display); font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; color: var(--text-bright); }
-  .brand-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--sky-light); box-shadow: 0 0 10px var(--sky-primary); }
-  
-  .nav-tabs { display: flex; gap: 24px; font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
-  .nav-tabs a { color: var(--text-muted); padding: 6px 0; position: relative; transition: color 0.2s; }
-  .nav-tabs a:hover, .nav-tabs a.active { color: var(--sky-light); }
-  .nav-tabs a.active::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--sky-light); }
+  .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 15px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .brand { font-family:var(--display); font-weight:800; font-size:1.2rem; color:var(--text-bright); display:flex; align-items:center; gap:10px; }
+  .brand img { width:28px; height:28px; border-radius:6px; border:1px solid var(--emerald-light); }
+  .brand span { color:var(--emerald-light); }
+  .nav-links { display:flex; gap:24px; font-family:var(--mono); font-size:0.76rem; text-transform:uppercase; letter-spacing:0.06em; }
+  .nav-links a { color:var(--text-muted); transition:color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color:var(--sky-light); }
+  .nav-resume-btn { display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:6px; background:linear-gradient(135deg,var(--sky-primary),#0284C7); color:#fff; font-family:var(--mono); font-size:0.74rem; font-weight:600; text-transform:uppercase; transition:all 0.2s; }
+  .nav-resume-btn:hover { transform:translateY(-2px); }
+  @media (max-width:860px) { .nav-links { display:none; } }
 
-  .hero-category { padding: 50px 0 34px; }
-  .category-eyebrow { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; color: var(--emerald-light); letter-spacing: 0.1em; margin-bottom: 12px; font-weight: 700; }
-  h1.category-title { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 800; line-height: 1.1; margin-bottom: 18px; background: linear-gradient(110deg, #FFF 30%, var(--sky-light) 70%, var(--emerald-light) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  p.category-lede { font-size: 1.1rem; color: var(--text-muted); max-width: 780px; margin-bottom: 30px; line-height: 1.7; }
+  /* Hero */
+  .page-hero { padding: 60px 0 40px; border-bottom: 1px solid var(--line); }
+  .page-eyebrow { font-family:var(--mono); font-size:0.75rem; color:var(--emerald-light); letter-spacing:0.16em; text-transform:uppercase; font-weight:700; margin-bottom:10px; }
+  .page-title { font-family:var(--display); font-size:clamp(2.2rem,5vw,3.2rem); font-weight:800; line-height:1.1; margin-bottom:16px; background:linear-gradient(110deg,#FFF 30%,var(--sky-light) 70%,var(--emerald-light) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .page-lede { font-size:1.05rem; color:var(--text-muted); max-width:780px; line-height:1.7; }
 
-  .resume-panel { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; margin-bottom: 48px; backdrop-filter: blur(8px); }
-  .panel-title { font-family: var(--mono); font-size: 0.74rem; text-transform: uppercase; color: var(--sky-light); letter-spacing: 0.08em; margin-bottom: 14px; font-weight: 700; border-bottom: 1px dashed var(--line); padding-bottom: 8px; }
-  .resume-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .res-col h4 { font-family: var(--display); font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; color: var(--text-bright); }
-  .res-col p { font-size: 0.88rem; color: var(--text-muted); }
+  /* Resume Highlights Panel */
+  .highlights-panel { background:var(--bg-card); border:1px solid var(--line-strong); border-radius:var(--radius); padding:28px; margin-top:40px; backdrop-filter:blur(10px); }
+  .panel-label { font-family:var(--mono); font-size:0.72rem; text-transform:uppercase; color:var(--sky-light); letter-spacing:0.08em; font-weight:700; border-bottom:1px dashed var(--line); padding-bottom:10px; margin-bottom:20px; }
+  .highlights-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .hl-col h4 { font-family:var(--display); font-size:0.95rem; font-weight:700; color:#FFF; margin-bottom:8px; }
+  .hl-col p { font-size:0.88rem; color:var(--text-muted); line-height:1.6; }
+  @media (max-width:768px) { .highlights-grid { grid-template-columns:1fr; } }
 
-  .grid-title { font-family: var(--display); font-size: 1.6rem; font-weight: 700; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
-  .grid-title::before { content: ''; width: 4px; height: 22px; background: var(--sky-light); border-radius: 2px; }
+  /* Skills Chips */
+  .section-heading { font-family:var(--display); font-size:1.8rem; font-weight:800; color:#FFF; margin:60px 0 24px; display:flex; align-items:center; gap:12px; }
+  .section-heading::before { content:''; width:4px; height:24px; background:var(--emerald-light); border-radius:2px; }
+  .chip-list { display:flex; flex-wrap:wrap; gap:9px; margin-bottom:50px; }
+  .chip { font-family:var(--mono); font-size:0.72rem; padding:6px 12px; border-radius:5px; background:rgba(14,165,233,0.08); border:1px solid rgba(56,189,248,0.2); color:var(--sky-light); transition:all 0.2s; }
+  .chip:hover { background:rgba(14,165,233,0.18); color:#FFF; }
 
-  .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-bottom: 60px; }
-  .project-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: all 0.25s ease; backdrop-filter: blur(8px); padding: 28px; }
-  .project-card:hover { border-color: var(--sky-light); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px var(--sky-glow); }
-  
-  .card-tag { font-family: var(--mono); font-size: 0.72rem; color: var(--emerald-light); text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
-  .project-card h3 { font-family: var(--display); font-size: 1.35rem; font-weight: 700; margin-bottom: 12px; color: var(--text-bright); }
-  .project-card p { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 20px; line-height: 1.65; }
-
-  .pill-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-  .pill { font-family: var(--mono); font-size: 0.7rem; padding: 4px 10px; border-radius: 4px; background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(56, 189, 248, 0.22); color: var(--sky-light); }
-
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; font-family: var(--mono); font-size: 0.78rem; font-weight: 600; border-radius: var(--radius); transition: all 0.2s; cursor: pointer; text-transform: uppercase; margin-top: auto; width: fit-content; }
-  .btn-primary { background: linear-gradient(135deg, var(--sky-primary), #0284C7); color: #FFF; border: none; box-shadow: 0 4px 14px var(--sky-glow); }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(14, 165, 233, 0.35); }
-
-  footer { border-top: 1px solid var(--line); padding: 40px 0; text-align: center; font-family: var(--mono); font-size: 0.8rem; color: var(--text-subtle); margin-top: 60px; }
-
-  @media (max-width: 900px) {
-    .project-grid { grid-template-columns: 1fr; }
-    .resume-grid { grid-template-columns: 1fr; }
+  /* Centered Alternating Timeline */
+  .center-timeline-wrap {
+    position:relative; max-width:1100px; margin:0 auto; padding:20px 0 40px;
   }
+  .center-timeline-wrap::before {
+    content:''; position:absolute; top:0; bottom:0; left:50%; width:3px;
+    transform:translateX(-50%);
+    background:linear-gradient(180deg, var(--sky-light), var(--emerald-light), var(--sky-primary));
+    box-shadow:0 0 14px var(--sky-glow); z-index:1;
+  }
+  .timeline-row { position:relative; display:flex; margin-bottom:48px; width:100%; z-index:2; }
+  .timeline-row.right { justify-content:flex-end; }
+  .timeline-row.left { justify-content:flex-start; }
+  .timeline-node-center {
+    position:absolute; left:50%; top:26px; transform:translate(-50%,-50%);
+    width:58px; height:58px; border-radius:50%; background:var(--bg-card-solid);
+    border:2px solid var(--emerald-light); color:var(--emerald-light);
+    font-family:var(--display); font-size:1.1rem; font-weight:800;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 0 20px var(--emerald-glow); z-index:5; transition:all 0.3s;
+  }
+  .timeline-row:hover .timeline-node-center {
+    border-color:var(--sky-light); color:var(--sky-light);
+    box-shadow:0 0 25px var(--sky-glow); transform:translate(-50%,-50%) scale(1.1);
+  }
+  .timeline-card-wrap { width:44%; position:relative; z-index:2; }
+  .timeline-row.right .timeline-card-wrap::before {
+    content:''; position:absolute; top:26px; left:-13.5%; width:13.5%; height:2px;
+    background:linear-gradient(90deg,var(--emerald-light),var(--line-strong));
+  }
+  .timeline-row.left .timeline-card-wrap::after {
+    content:''; position:absolute; top:26px; right:-13.5%; width:13.5%; height:2px;
+    background:linear-gradient(90deg,var(--line-strong),var(--emerald-light));
+  }
+  .node-card {
+    background:var(--bg-card); border:1px solid var(--line-strong); border-radius:var(--radius);
+    padding:26px; backdrop-filter:blur(10px); transition:all 0.25s ease; display:flex; flex-direction:column; gap:14px;
+  }
+  .node-card:hover { border-color:var(--sky-light); transform:translateY(-4px); box-shadow:0 14px 40px rgba(0,0,0,0.7),0 0 24px var(--sky-glow); }
+  .node-preview { width:100%; height:180px; border-radius:7px; overflow:hidden; background:#0F172A; border:1px solid var(--line); }
+  .node-preview img { width:100%; height:100%; object-fit:cover; transition:transform 0.35s; }
+  .node-card:hover .node-preview img { transform:scale(1.05); }
+  .node-preview-inner { width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+  .node-preview-text { font-family:var(--mono); font-size:1rem; font-weight:700; }
+  .node-cat { font-family:var(--mono); font-size:0.7rem; color:var(--sky-light); text-transform:uppercase; font-weight:700; }
+  .node-title { font-family:var(--display); font-size:1.2rem; font-weight:800; color:#FFF; line-height:1.3; }
+  .node-desc { font-size:0.9rem; color:var(--text-muted); line-height:1.6; }
+  .node-chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .node-pill { font-family:var(--mono); font-size:0.68rem; padding:4px 9px; border-radius:4px; background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2); color:var(--sky-light); }
+  .node-actions { display:flex; gap:10px; flex-wrap:wrap; }
+  .btn-primary { display:inline-flex; align-items:center; gap:7px; padding:10px 20px; border-radius:6px; background:linear-gradient(135deg,var(--sky-primary),#0284C7); color:#FFF; font-family:var(--mono); font-size:0.78rem; font-weight:600; text-transform:uppercase; transition:all 0.2s; border:none; cursor:pointer; box-shadow:0 4px 14px var(--sky-glow); }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(14,165,233,0.4); }
+  .btn-secondary { display:inline-flex; align-items:center; gap:7px; padding:10px 18px; border-radius:6px; background:rgba(15,23,42,0.6); border:1px solid var(--line-strong); color:var(--text-bright); font-family:var(--mono); font-size:0.78rem; font-weight:600; text-transform:uppercase; transition:all 0.2s; }
+  .btn-secondary:hover { background:rgba(56,189,248,0.1); border-color:var(--sky-light); color:var(--sky-light); transform:translateY(-2px); }
+  @media (max-width:900px) {
+    .center-timeline-wrap::before { left:28px; }
+    .timeline-row, .timeline-row.left, .timeline-row.right { justify-content:flex-end; }
+    .timeline-node-center { left:28px; width:48px; height:48px; font-size:0.95rem; }
+    .timeline-card-wrap { width:calc(100% - 70px); }
+    .timeline-row.right .timeline-card-wrap::before,
+    .timeline-row.left .timeline-card-wrap::after { display:none; }
+  }
+
+  /* Footer */
+  footer { border-top:1px solid var(--line-strong); padding:44px 0 28px; margin-top:80px; text-align:center; }
+  .footer-big { font-family:var(--display); font-size:clamp(2rem,6vw,4rem); font-weight:800; color:rgba(255,255,255,0.04); letter-spacing:-0.03em; margin-bottom:14px; }
+  .footer-info { font-family:var(--mono); font-size:0.76rem; color:var(--text-subtle); }
 </style>
 </head>
 <body>
 
-<div class="cursor-dot" id="dot"></div>
-<div class="cursor-ring" id="ring"></div>
-
 <header class="site-nav">
   <div class="nav-inner">
     <a href="index.html" class="brand">
-      <span class="brand-dot"></span>
-      Nooh Khan
+      <img src="assets/favicon.png" alt="NK">
+      <span>Nooh Khan</span>
     </a>
-    <nav class="nav-tabs">
+    <nav class="nav-links">
       <a href="index.html">Home</a>
-      <a href="ai-ml-data-science.html" class="active">AI / ML / DS</a>
-      <a href="python-backend.html">Python Backend</a>
       <a href="data-analytics.html">Data Analytics</a>
+      <a href="python-backend.html">Python Backend</a>
+      <a href="ai-ml-data-science.html" class="active">AI / ML / DS</a>
+      <a href="index.html#resume">Resume</a>
+      <a href="index.html#contact">Contact</a>
     </nav>
+    <a class="nav-resume-btn" href="assets/Nooh_Khan_Resume.pdf" target="_blank">📄 Resume</a>
   </div>
 </header>
 
-<main class="wrap hero-category">
-  <div class="category-eyebrow">Career & Skill Category</div>
-  <h1 class="category-title">AI, Machine Learning & Data Science</h1>
-  <p class="category-lede">Designing intelligent, production-ready systems. From multi-layer digital twins and agentic decision loops to vector retrieval-augmented generation (RAG) and automated MLOps pipelines.</p>
+<main class="wrap">
 
-  <!-- AI / ML RESUME HIGHLIGHTS -->
-  <div class="resume-panel">
-    <div class="panel-title">AI / Machine Learning — Relevant Qualifications & Experience</div>
-    <div class="resume-grid">
-      <div class="res-col">
-        <h4>AI Technologies & Frameworks</h4>
+  <!-- Hero -->
+  <div class="page-hero">
+    <p class="page-eyebrow">Specialization Hub — AI / ML / Data Science</p>
+    <h1 class="page-title">AI, Machine Learning &amp; Data Science</h1>
+    <p class="page-lede">Designing intelligent, production-ready systems. From multi-layer digital twins and agentic decision loops to vector retrieval-augmented generation (RAG) and automated MLOps pipelines.</p>
+  </div>
+
+  <!-- Resume Highlights -->
+  <div class="highlights-panel">
+    <div class="panel-label">Relevant Qualifications &amp; Experience</div>
+    <div class="highlights-grid">
+      <div class="hl-col">
+        <h4>AI Technologies &amp; Frameworks</h4>
         <p>Agentic AI, RAG (Retrieval-Augmented Generation), Scikit-Learn, TensorFlow, Time-Series Predictive Forecasting, Vector Search.</p>
       </div>
-      <div class="res-col">
-        <h4>MLOps & Lifecycle Governance</h4>
+      <div class="hl-col">
+        <h4>MLOps &amp; Lifecycle Governance</h4>
         <p>MLflow experiment tracking, model registry management, data drift monitoring, automated CI quality gates, and Docker/Kubernetes deployment.</p>
       </div>
-      <div class="res-col">
+      <div class="hl-col">
         <h4>Lead Flagship Architect</h4>
-        <p>Designed and shipped a 10-layer Enterprise Digital Twin & Decision Intelligence Platform additively over 12 weeks with zero regressions.</p>
+        <p>Designed and shipped a 10-layer Enterprise Digital Twin &amp; Decision Intelligence Platform additively over 12 weeks with zero regressions.</p>
       </div>
     </div>
   </div>
 
-  <!-- PROJECTS GRID -->
-  <h2 class="grid-title">Featured AI / ML / Data Science Projects</h2>
-  
-  <div class="project-grid">
-    <!-- Project 1 -->
-    <div class="project-card">
-      <div class="card-tag">10-Layer Systems Architecture</div>
-      <h3>Enterprise Digital Twin & Decision Intelligence Platform</h3>
-      <p>A flagship 10-layer platform unifying state streaming, predictive forecasting, agentic workflows, enterprise RAG, MLflow experiment tracking, and Kubernetes deployment.</p>
-      <div class="pill-group">
-        <span class="pill">Digital Twin</span>
-        <span class="pill">Agentic AI</span>
-        <span class="pill">RAG</span>
-        <span class="pill">MLflow</span>
-        <span class="pill">Kubernetes</span>
+  <!-- Skills -->
+  <h2 class="section-heading">AI / ML / Data Science Toolkit</h2>
+  <div class="chip-list">
+    <span class="chip">Scikit-Learn</span>
+    <span class="chip">TensorFlow</span>
+    <span class="chip">Agentic AI (ReAct)</span>
+    <span class="chip">LangChain</span>
+    <span class="chip">RAG &amp; Vector Search</span>
+    <span class="chip">AWS Bedrock SDK</span>
+    <span class="chip">MLflow</span>
+    <span class="chip">Time-Series Forecasting</span>
+    <span class="chip">Auto-EDA</span>
+    <span class="chip">Model Registry</span>
+    <span class="chip">Docker &amp; Kubernetes</span>
+    <span class="chip">GitHub Actions CI/CD</span>
+    <span class="chip">Digital Twins</span>
+    <span class="chip">Predictive Modeling</span>
+  </div>
+
+  <!-- Projects — Centered Alternating Timeline -->
+  <h2 class="section-heading">Featured Projects</h2>
+  <div class="center-timeline-wrap">
+
+    <!-- Project 01 — RIGHT -->
+    <div class="timeline-row right">
+      <div class="timeline-node-center">01</div>
+      <div class="timeline-card-wrap">
+        <div class="node-card">
+          <div class="node-preview">
+            <img src="assets/ai-ml/Complete_Pipeline.png" alt="Enterprise Digital Twin Architecture">
+          </div>
+          <div class="node-cat">10-Layer Systems Architecture</div>
+          <div class="node-title">Enterprise Digital Twin &amp; Decision Intelligence Platform</div>
+          <p class="node-desc">A flagship 10-layer platform unifying state streaming, predictive forecasting, agentic workflows, enterprise RAG, MLflow experiment tracking, and Kubernetes deployment.</p>
+          <div class="node-chips">
+            <span class="node-pill">Digital Twin</span><span class="node-pill">Agentic AI</span><span class="node-pill">RAG</span><span class="node-pill">MLflow</span><span class="node-pill">Kubernetes</span>
+          </div>
+          <div class="node-actions">
+            <a href="projects/enterprise-digital-twin.html" class="btn-primary">View Project ↗</a>
+            <a href="https://github.com/noohkhan7232/enterprise-digital-twin.git" target="_blank" class="btn-secondary">GitHub 🔗</a>
+          </div>
+        </div>
       </div>
-      <a href="projects/enterprise-digital-twin.html" class="btn btn-primary">View Project Details ↗</a>
     </div>
 
-    <!-- Project 2 -->
-    <div class="project-card">
-      <div class="card-tag">Autonomous Analytics Agent</div>
-      <h3>Autonomous Unified Reasoning Data Science Agent</h3>
-      <p>An intelligent agent system that autonomously ingests tabular datasets, generates analytical hypotheses, executes automated EDA, selects optimal ML models, and drafts executive reports.</p>
-      <div class="pill-group">
-        <span class="pill">Agentic Reasoning</span>
-        <span class="pill">LangChain / Bedrock</span>
-        <span class="pill">Auto-EDA</span>
-        <span class="pill">Scikit-Learn</span>
+    <!-- Project 02 — LEFT -->
+    <div class="timeline-row left">
+      <div class="timeline-node-center">02</div>
+      <div class="timeline-card-wrap">
+        <div class="node-card">
+          <div class="node-preview">
+            <div class="node-preview-inner">
+              <span class="node-preview-text" style="color:var(--emerald-light);">AUTONOMOUS AGENT</span>
+            </div>
+          </div>
+          <div class="node-cat">Autonomous Analytics Agent</div>
+          <div class="node-title">Autonomous Unified Reasoning Data Science Agent</div>
+          <p class="node-desc">An intelligent agent system that autonomously ingests tabular datasets, generates analytical hypotheses, executes automated EDA, selects optimal ML models, and drafts executive reports.</p>
+          <div class="node-chips">
+            <span class="node-pill">Agentic Reasoning</span><span class="node-pill">LangChain</span><span class="node-pill">Auto-EDA</span><span class="node-pill">Scikit-Learn</span>
+          </div>
+          <div class="node-actions">
+            <a href="projects/autonomous-agent.html" class="btn-primary">View Project ↗</a>
+            <a href="https://github.com/noohkhan7232/Autonomous-Unified-Reasoning-Analytics-Data-Science-Agent.git" target="_blank" class="btn-secondary">GitHub 🔗</a>
+          </div>
+        </div>
       </div>
-      <a href="projects/autonomous-agent.html" class="btn btn-primary">View Project Details ↗</a>
     </div>
-  </div>
+
+  </div><!-- /center-timeline -->
+
 </main>
 
 <footer>
-  <div class="wrap">
-    © 2026 Nooh Khan — AI / Machine Learning Portfolio Page
-  </div>
+  <div class="footer-big">NOOH KHAN</div>
+  <div class="footer-info">© 2026 Nooh Khan · AI / ML / Data Science Specialization · <a href="index.html" style="color:var(--sky-light);">Back to Homepage</a></div>
 </footer>
 
-<script>
-  const dot = document.getElementById('dot');
-  const ring = document.getElementById('ring');
-  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
-  window.addEventListener('mousemove', e => {
-    mouseX = e.clientX; mouseY = e.clientY;
-    dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
-  });
-
-  function loop() {
-    ringX += (mouseX - ringX) * 0.2;
-    ringY += (mouseY - ringY) * 0.2;
-    ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
-    requestAnimationFrame(loop);
-  }
-  loop();
-</script>
 </body>
 </html>
