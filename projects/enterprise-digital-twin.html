@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enterprise Digital Twin & Decision Intelligence Platform — Nooh Khan</title>
+<meta name="description" content="A 10-layer digital twin platform unifying predictive intelligence, agentic workflows, RAG, workflow engine, MLOps, CI/CD, and Kubernetes deployment.">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-dark: #060B12;
+    --bg-card: rgba(15, 23, 42, 0.75);
+    --bg-card-solid: #0F172A;
+    --bg-card-hover: rgba(30, 41, 59, 0.85);
+
+    --text-bright: #F8FAFC;
+    --text-muted: #94A3B8;
+    --text-subtle: #64748B;
+
+    --sky-primary: #0EA5E9;
+    --sky-light: #38BDF8;
+    --sky-glow: rgba(14, 165, 233, 0.22);
+
+    --emerald-primary: #10B981;
+    --emerald-light: #34D399;
+    --emerald-glow: rgba(16, 185, 129, 0.22);
+
+    --line: rgba(56, 189, 248, 0.16);
+    --line-strong: rgba(56, 189, 248, 0.32);
+
+    --radius: 8px;
+    --display: 'Sora', sans-serif;
+    --body: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+    --maxw: 1100px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg-dark);
+    background-image:
+      radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.1) 0%, transparent 65%),
+      radial-gradient(circle at 90% 40%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+      radial-gradient(circle, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 28px 28px;
+    color: var(--text-bright);
+    font-family: var(--body);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+
+  header.site-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(6, 11, 18, 0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 16px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--display); font-weight: 700; font-size: 1.1rem;
+    display: flex; align-items: center; gap: 10px; color: var(--text-bright);
+  }
+  .brand-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--sky-light); box-shadow: 0 0 10px var(--sky-primary); }
+  .nav-links { display: flex; gap: 24px; font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .nav-links a { color: var(--text-muted); transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--sky-light); }
+
+  .hero-detail { padding: 50px 0 30px; }
+  .breadcrumb { font-family: var(--mono); font-size: 0.75rem; color: var(--sky-light); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .breadcrumb a { color: var(--text-muted); }
+  .breadcrumb a:hover { color: var(--sky-light); }
+
+  h1.project-title { font-family: var(--display); font-size: clamp(2.1rem, 4.5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 18px; background: linear-gradient(110deg, #FFFFFF 30%, var(--sky-light) 70%, var(--emerald-light) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .project-tagline { font-size: 1.12rem; color: var(--text-muted); max-width: 820px; margin-bottom: 28px; line-height: 1.7; }
+
+  .meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
+  .meta-box { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; backdrop-filter: blur(8px); }
+  .meta-box .k { font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; color: var(--sky-light); letter-spacing: 0.06em; margin-bottom: 4px; }
+  .meta-box .v { font-size: 0.95rem; font-weight: 600; color: var(--text-bright); }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; font-family: var(--mono); font-size: 0.8rem; font-weight: 600; border-radius: var(--radius); transition: all 0.2s; cursor: pointer; border: 1px solid transparent; }
+  .btn-primary { background: linear-gradient(135deg, var(--sky-primary), #0284C7); color: #FFF; box-shadow: 0 4px 16px var(--sky-glow); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(14, 165, 233, 0.4); }
+  .btn-outline { background: rgba(15, 23, 42, 0.6); color: var(--text-bright); border-color: var(--line-strong); }
+  .btn-outline:hover { background: rgba(56, 189, 248, 0.1); border-color: var(--sky-light); color: var(--sky-light); }
+
+  .content-section { margin-bottom: 44px; }
+  .section-heading { font-family: var(--display); font-size: 1.5rem; font-weight: 700; color: var(--text-bright); margin-bottom: 16px; border-bottom: 1px solid var(--line); padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .section-heading::before { content: ''; width: 4px; height: 20px; background: var(--emerald-light); border-radius: 2px; }
+
+  p.text-block { color: var(--text-muted); font-size: 1rem; margin-bottom: 16px; line-height: 1.75; }
+  p.text-block strong { color: var(--sky-light); font-weight: 600; }
+
+  .tech-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .pill { font-family: var(--mono); font-size: 0.74rem; padding: 6px 12px; border-radius: 4px; background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(56, 189, 248, 0.25); color: var(--sky-light); }
+
+  .layer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px; }
+  .layer-card { background: var(--bg-card); border: 1px solid var(--line); padding: 18px; border-radius: var(--radius); }
+  .layer-num { font-family: var(--mono); font-size: 0.72rem; color: var(--emerald-light); font-weight: 700; margin-bottom: 6px; }
+  .layer-title { font-family: var(--display); font-weight: 700; font-size: 1.05rem; margin-bottom: 8px; color: var(--text-bright); }
+  .layer-desc { font-size: 0.88rem; color: var(--text-muted); }
+
+  .bullet-list { list-style: none; margin-top: 12px; }
+  .bullet-list li { position: relative; padding-left: 22px; margin-bottom: 10px; color: var(--text-muted); font-size: 0.95rem; }
+  .bullet-list li::before { content: '▹'; position: absolute; left: 0; color: var(--sky-light); font-size: 1.1rem; line-height: 1; }
+
+  footer { border-top: 1px solid var(--line); padding: 40px 0; margin-top: 60px; text-align: center; font-family: var(--mono); font-size: 0.8rem; color: var(--text-subtle); }
+
+  @media (max-width: 768px) {
+    .meta-grid { grid-template-columns: repeat(2, 1fr); }
+    .layer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand">
+      <span class="brand-dot"></span>
+      Nooh Khan
+    </a>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../ai-ml-data-science.html" class="active">AI / ML / DS</a>
+      <a href="../python-backend.html">Python Backend</a>
+      <a href="../data-analytics.html">Data Analytics</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap hero-detail">
+  <div class="breadcrumb">
+    <a href="../index.html">Home</a> <span>/</span>
+    <a href="../ai-ml-data-science.html">AI & Data Science</a> <span>/</span>
+    <span>Digital Twin</span>
+  </div>
+
+  <h1 class="project-title">Enterprise Digital Twin & Decision Intelligence Platform</h1>
+  <p class="project-tagline">A production-grade, 10-layer digital twin platform built additively over 12 weeks. Unifies predictive simulation, agentic reasoning, enterprise RAG, automated MLOps tracking, 20-gate CI/CD validation, and Kubernetes deployment.</p>
+
+  <div class="meta-grid">
+    <div class="meta-box"><div class="k">Role</div><div class="v">Lead Developer & Systems Architect</div></div>
+    <div class="meta-box"><div class="k">Category</div><div class="v">AI / ML / Data Science & MLOps</div></div>
+    <div class="meta-box"><div class="k">Timeline</div><div class="v">12/2025 – 07/2026 (12 Weeks)</div></div>
+    <div class="meta-box"><div class="k">Architecture</div><div class="v">10-Layer Additive Stack</div></div>
+  </div>
+
+  <div style="margin-bottom: 40px; display: flex; gap: 14px; flex-wrap: wrap;">
+    <a href="https://github.com/noohkhan7232/enterprise-digital-twin.git" target="_blank" rel="noopener" class="btn btn-primary">
+      View GitHub Repository ↗
+    </a>
+    <a href="../assets/Nooh_Khan_Resume.pdf" target="_blank" rel="noopener" class="btn btn-outline">
+      Download Résumé PDF 📄
+    </a>
+  </div>
+
+  <!-- SECTION 1: OVERVIEW & PROBLEM STATEMENT -->
+  <div class="content-section">
+    <h2 class="section-heading">Project Overview & Problem Statement</h2>
+    <p class="text-block">
+      Modern industrial and enterprise environments generate massive continuous telemetry, but legacy systems struggle to turn raw IoT and transactional data into active decision-making intelligence. Siloed machine learning models often lack contextual knowledge, while static monitoring dashboards fail to simulate future states or trigger automated actions.
+    </p>
+    <p class="text-block">
+      <strong>The Solution:</strong> The Enterprise Digital Twin & Decision Intelligence Platform bridges this gap. It synchronizes live asset state data with continuous forecasting strategies, grounds LLM responses with enterprise RAG knowledge, executes agentic perceive-deliberate-act workflows, and guarantees operational reliability through an MLOps lifecycle with automated model drift monitoring and Kubernetes deployment.
+    </p>
+  </div>
+
+  <!-- SECTION 2: 10-LAYER ARCHITECTURE -->
+  <div class="content-section">
+    <h2 class="section-heading">10-Layer System Architecture</h2>
+    <p class="text-block">The platform was engineered additively over 12 weeks so that higher-level decision intelligence layers sit atop robust data and operational layers without breaking backward compatibility.</p>
+    
+    <div class="layer-grid">
+      <div class="layer-card">
+        <div class="layer-num">LAYER 01</div>
+        <div class="layer-title">Digital Twin Core</div>
+        <div class="layer-desc">Asset state representation, live state streams, deterministic state transitions, and real-time telemetry ingestion.</div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">LAYER 02</div>
+        <div class="layer-title">Predictive Intelligence</div>
+        <div class="layer-desc">Time-series forecasting, predictive maintenance strategies, anomaly scoring, and model inference pipelines.</div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">LAYER 03</div>
+        <div class="layer-title">Agentic Workflows</div>
+        <div class="layer-desc">Autonomous decision loop (Perceive → Deliberate → Act) with strongly typed tools for system control.</div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">LAYER 04</div>
+        <div class="layer-title">Knowledge Intelligence (RAG)</div>
+        <div class="layer-desc">Vector-embedded enterprise document retrieval for evidence-grounded Q&A and operational guidance.</div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">LAYER 05</div>
+        <div class="layer-title">Workflow Execution Engine</div>
+        <div class="layer-desc">Auditable, stateful, and replayable multi-step process orchestration with transaction safety.</div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">LAYER 06</div>
+        <div class="layer-title">MLOps & Governance</div>
+        <div class="layer-desc">MLflow experiment tracking, central model registry, data lineage, and versioned model artifact control.</div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">LAYER 07</div>
+        <div class="layer-title">Production Health Monitoring</div>
+        <div class="layer-desc">Continuous data drift detection, Kolmogorov-Smirnov statistical testing, latency tracking, and threshold alerts.</div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">LAYER 08</div>
+        <div class="layer-title">CI/CD Quality Engine</div>
+        <div class="layer-desc">20-gate automated GitHub Actions quality verification testing code formatting, typing, unit tests, and security.</div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">LAYER 09</div>
+        <div class="layer-title">Cloud Deployment</div>
+        <div class="layer-desc">Docker containerization and 10 production-ready Kubernetes manifests with health-gated zero-downtime rollbacks.</div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">LAYER 10</div>
+        <div class="layer-title">System Observability</div>
+        <div class="layer-desc">OpenTelemetry distributed tracing, Service Level Objective (SLO) tracking, incident logging, and capacity forecasting.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: TECHNOLOGIES & CONCEPTS LEARNED -->
+  <div class="content-section">
+    <h2 class="section-heading">Technologies & Key Concepts Mastered</h2>
+    <div class="tech-pills">
+      <span class="pill">Python 3.12 (Typed)</span>
+      <span class="pill">FastAPI</span>
+      <span class="pill">Scikit-Learn</span>
+      <span class="pill">MLflow</span>
+      <span class="pill">RAG & Vector Search</span>
+      <span class="pill">Agentic Reasoning</span>
+      <span class="pill">Docker</span>
+      <span class="pill">Kubernetes</span>
+      <span class="pill">Drift Detection</span>
+      <span class="pill">GitHub Actions</span>
+      <span class="pill">Pytest</span>
+      <span class="pill">PyYAML</span>
+    </div>
+
+    <ul class="bullet-list" style="margin-top: 20px;">
+      <li><strong>Production MLOps Engineering:</strong> Learned how to structure model experiment tracking, automated artifact logging, and model stage transitions using MLflow.</li>
+      <li><strong>Reliability & Testing:</strong> Built 20 deterministic quality gates ensuring zero regressions across 12 additive codebase iterations.</li>
+      <li><strong>Cloud-Native Deployment:</strong> Authored Kubernetes Deployment, Service, HPA, Ingress, and ConfigMap manifests with automated liveness and readiness probes.</li>
+      <li><strong>Agentic System Design:</strong> Architected safety-bounded agent tools that prevent hallucinated tool execution in critical production environments.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 4: RESULTS & IMPACT -->
+  <div class="content-section">
+    <h2 class="section-heading">Key Results & Outcomes</h2>
+    <ul class="bullet-list">
+      <li><strong>100% Deterministic Test Suite:</strong> Clean execution across all 10 architectural layers with automated CI validation.</li>
+      <li><strong>Zero Runtime Overhead:</strong> Designed lightweight Python microservices executing model predictions in under 15ms.</li>
+      <li><strong>Self-Healing Infrastructure:</strong> Integrated health-gated Kubernetes rollback triggers that prevent failed deployments from reaching live traffic.</li>
+    </ul>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    © 2026 Nooh Khan — Enterprise Digital Twin & Decision Intelligence Platform
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWS Bedrock AI Integration Backend Service — Nooh Khan</title>
+<meta name="description" content="Production-ready Python FastAPI backend service integrating AWS Bedrock foundation models with streaming responses, rate limiting, and Pydantic validation.">
+
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-dark: #060B12;
+    --bg-card: rgba(15, 23, 42, 0.75);
+
+    --text-bright: #F8FAFC;
+    --text-muted: #94A3B8;
+    --text-subtle: #64748B;
+
+    --sky-primary: #0EA5E9;
+    --sky-light: #38BDF8;
+    --sky-glow: rgba(14, 165, 233, 0.22);
+
+    --emerald-primary: #10B981;
+    --emerald-light: #34D399;
+
+    --line: rgba(56, 189, 248, 0.16);
+    --line-strong: rgba(56, 189, 248, 0.32);
+
+    --radius: 8px;
+    --display: 'Sora', sans-serif;
+    --body: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+    --maxw: 1100px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: var(--bg-dark);
+    background-image:
+      radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.1) 0%, transparent 65%),
+      radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+      radial-gradient(circle, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 28px 28px;
+    color: var(--text-bright);
+    font-family: var(--body);
+    line-height: 1.65;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  header.site-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(6, 11, 18, 0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 16px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { font-family: var(--display); font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
+  .brand-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--sky-light); box-shadow: 0 0 10px var(--sky-primary); }
+  .nav-links { display: flex; gap: 24px; font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; }
+  .nav-links a { color: var(--text-muted); }
+  .nav-links a:hover, .nav-links a.active { color: var(--sky-light); }
+
+  .hero-detail { padding: 50px 0 30px; }
+  .breadcrumb { font-family: var(--mono); font-size: 0.75rem; color: var(--sky-light); text-transform: uppercase; margin-bottom: 16px; display: flex; gap: 8px; }
+  .breadcrumb a { color: var(--text-muted); }
+
+  h1.project-title { font-family: var(--display); font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 800; margin-bottom: 18px; background: linear-gradient(110deg, #FFF 30%, var(--sky-light) 70%, var(--emerald-light) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .project-tagline { font-size: 1.1rem; color: var(--text-muted); max-width: 820px; margin-bottom: 28px; }
+
+  .meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
+  .meta-box { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+  .meta-box .k { font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; color: var(--sky-light); margin-bottom: 4px; }
+  .meta-box .v { font-size: 0.95rem; font-weight: 600; }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; font-family: var(--mono); font-size: 0.8rem; font-weight: 600; border-radius: var(--radius); transition: all 0.2s; cursor: pointer; border: 1px solid transparent; }
+  .btn-primary { background: linear-gradient(135deg, var(--sky-primary), #0284C7); color: #FFF; box-shadow: 0 4px 16px var(--sky-glow); }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-outline { background: rgba(15, 23, 42, 0.6); color: var(--text-bright); border-color: var(--line-strong); }
+  .btn-outline:hover { background: rgba(56, 189, 248, 0.1); color: var(--sky-light); }
+
+  .content-section { margin-bottom: 44px; }
+  .section-heading { font-family: var(--display); font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; border-bottom: 1px solid var(--line); padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .section-heading::before { content: ''; width: 4px; height: 20px; background: var(--emerald-light); border-radius: 2px; }
+
+  p.text-block { color: var(--text-muted); font-size: 1rem; margin-bottom: 16px; line-height: 1.75; }
+  p.text-block strong { color: var(--sky-light); }
+
+  .tech-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .pill { font-family: var(--mono); font-size: 0.74rem; padding: 6px 12px; border-radius: 4px; background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(56, 189, 248, 0.25); color: var(--sky-light); }
+
+  .bullet-list { list-style: none; margin-top: 12px; }
+  .bullet-list li { position: relative; padding-left: 22px; margin-bottom: 10px; color: var(--text-muted); font-size: 0.95rem; }
+  .bullet-list li::before { content: '▹'; position: absolute; left: 0; color: var(--sky-light); font-size: 1.1rem; line-height: 1; }
+
+  footer { border-top: 1px solid var(--line); padding: 40px 0; margin-top: 60px; text-align: center; font-family: var(--mono); font-size: 0.8rem; color: var(--text-subtle); }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand">
+      <span class="brand-dot"></span>
+      Nooh Khan
+    </a>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../python-backend.html" class="active">Python Backend</a>
+      <a href="../ai-ml-data-science.html">AI / ML / DS</a>
+      <a href="../data-analytics.html">Data Analytics</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap hero-detail">
+  <div class="breadcrumb">
+    <a href="../index.html">Home</a> <span>/</span>
+    <a href="../python-backend.html">Python Backend</a> <span>/</span>
+    <span>Bedrock Backend</span>
+  </div>
+
+  <h1 class="project-title">AWS Bedrock AI Integration Backend Service</h1>
+  <p class="project-tagline">A cloud-native Python API gateway and backend middleware interfacing with AWS Bedrock foundation models (Claude, Titan), offering SSE streaming, request validation, and rate-limiting middleware.</p>
+
+  <div class="meta-grid">
+    <div class="meta-box"><div class="k">Role</div><div class="v">Backend API Engineer</div></div>
+    <div class="meta-box"><div class="k">Category</div><div class="v">Cloud Backend & LLM APIs</div></div>
+    <div class="meta-box"><div class="k">Cloud SDK</div><div class="v">AWS Boto3 & Bedrock Runtime</div></div>
+    <div class="meta-box"><div class="k">Framework</div><div class="v">FastAPI & Async Server Sent Events</div></div>
+  </div>
+
+  <div style="margin-bottom: 40px; display: flex; gap: 14px; flex-wrap: wrap;">
+    <a href="https://github.com/noohkhan7232/bedrock_backend.git" target="_blank" rel="noopener" class="btn btn-primary">
+      View GitHub Repository ↗
+    </a>
+    <a href="../assets/Nooh_Khan_Resume.pdf" target="_blank" rel="noopener" class="btn btn-outline">
+      Download Résumé PDF 📄
+    </a>
+  </div>
+
+  <div class="content-section">
+    <h2 class="section-heading">Project Overview</h2>
+    <p class="text-block">
+      Integrating Large Language Models directly into web applications requires server-side middleware to protect cloud API credentials, manage rate limits, format prompt templates securely, and handle Server-Sent Events (SSE) token streaming for responsive frontends.
+    </p>
+    <p class="text-block">
+      <strong>The Solution:</strong> Built a production-ready Python backend using FastAPI and `boto3`. The service abstracts AWS Bedrock API calls behind clean REST endpoints, validates payload structures with Pydantic v2, streaming responses byte-by-byte to client clients, and enforcing security policies.
+    </p>
+  </div>
+
+  <div class="content-section">
+    <h2 class="section-heading">Key Backend Capabilities</h2>
+    <ul class="bullet-list">
+      <li><strong>Server-Sent Events (SSE) Streaming:</strong> Returns LLM output chunks asynchronously as they are generated by AWS Bedrock runtime.</li>
+      <li><strong>Dynamic Model Switcher:</strong> Allows clients to toggle between foundation models (e.g. Claude 3, Titan Text) via structured query parameters.</li>
+      <li><strong>Pydantic Payload Guards:</strong> Prevents malformed prompt injection by validating strict schema contracts before reaching external APIs.</li>
+      <li><strong>Asynchronous AWS Boto3 Execution:</strong> Offloads synchronous Boto3 network calls to background threadpools using `anyio.to_thread`.</li>
+      <li><strong>Dockerized Microservice:</strong> Packaged into a lightweight Alpine-based container ready for ECS / EKS deployment.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2 class="section-heading">Technologies & Skills Demonstrated</h2>
+    <div class="tech-pills">
+      <span class="pill">Python 3.11</span>
+      <span class="pill">FastAPI</span>
+      <span class="pill">AWS Boto3 SDK</span>
+      <span class="pill">AWS Bedrock Runtime</span>
+      <span class="pill">Pydantic v2</span>
+      <span class="pill">Server-Sent Events (SSE)</span>
+      <span class="pill">Docker</span>
+      <span class="pill">Uvicorn</span>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    © 2026 Nooh Khan — AWS Bedrock AI Integration Backend Service
+  </div>
+</footer>
+
+</body>
+</html>
