@@ -103,8 +103,9 @@ img{max-width:100%;display:block}
    ============================================================ */
 header.site-nav{
   position:sticky;top:0;z-index:1000;
-  background:rgba(6,11,18,0.93);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line-strong);
+  background:linear-gradient(180deg,rgba(14,32,56,0.62),rgba(8,20,36,0.62));
+  backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);
+  border-bottom:1px solid rgba(56,189,248,0.18);
 }
 header.site-nav::after{
   content:'';display:block;height:2px;width:100%;
@@ -703,10 +704,9 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
     </div>
     <nav class="nav-links">
       <a onclick="showView('home')" data-view="home" class="active">Home</a>
-      <a onclick="showView('data-analytics')" data-view="data-analytics">Data Analytics</a>
-      <a onclick="showView('python-backend')" data-view="python-backend">Python Backend</a>
       <a onclick="showView('ai-ml')" data-view="ai-ml">AI / ML / DS</a>
-      <a onclick="scrollToSection('resume-section')">Resume</a>
+      <a onclick="showView('python-backend')" data-view="python-backend">Python Backend</a>
+      <a onclick="showView('data-analytics')" data-view="data-analytics">Data Analytics</a>
       <a onclick="scrollToSection('contact-section')">Contact</a>
     </nav>
     <div style="display:flex;align-items:center;gap:10px">
@@ -756,7 +756,7 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
 
     <!-- 01 / ABOUT -->
     <section id="about-section" class="section">
-      <p class="section-label">01 / About Me</p>
+      <p class="section-label">About Me</p>
       <h2 class="section-title">Engineering across three core disciplines.</h2>
       <p class="section-lede">Combining computer science fundamentals with hands-on systems reliability, machine learning, and data analytics.</p>
       <div class="about-grid reveal-up">
@@ -778,7 +778,7 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
 
     <!-- 02 / SKILLS -->
     <section id="skills-section" class="section">
-      <p class="section-label">02 / Skills &amp; Technologies</p>
+      <p class="section-label">Skills &amp; Technologies</p>
       <h2 class="section-title">Technical capabilities &amp; toolkit.</h2>
       <p class="section-lede">Organized by specialization areas based on actual projects, certifications, and codebase experience.</p>
       <div class="skills-grid">
@@ -807,7 +807,7 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
 
     <!-- 04 / PROJECT JOURNEY — CENTERED ALTERNATING TIMELINE -->
     <section id="projects-section" class="section">
-      <p class="section-label">04 / Project Journey</p>
+      <p class="section-label">Project Journey</p>
       <h2 class="section-title">Structured journey through my work.</h2>
       <p class="section-lede">Projects organized in deliberate sequence along a centered timeline, alternating right and left. Click any project for detailed specs.</p>
 
@@ -944,7 +944,7 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
 
     <!-- 05 / SPECIALIZATIONS -->
     <section id="specializations-section" class="section">
-      <p class="section-label">05 / Specialization Hubs</p>
+      <p class="section-label">Specialization Hubs</p>
       <h2 class="section-title">Deep dive technical category hubs.</h2>
       <p class="section-lede">Explore dedicated hub sections with in-depth projects, skills, and resume highlights for each specialization.</p>
       <div class="spec-grid">
@@ -969,7 +969,7 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
 
    <!-- 03 / CERTIFICATIONS — INFINITE MARQUEE -->
     <section id="cert-section" class="section">
-      <p class="section-label">03 / Certifications</p>
+      <p class="section-label">Certifications</p>
       <h2 class="section-title">Verified credentials &amp; hackathons.</h2>
       <p class="section-lede">Hover to pause. Click any certification to view full document.</p>
 
@@ -1000,7 +1000,7 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
 
     <!-- 06 / RESUME -->
     <section id="resume-section" class="section">
-      <p class="section-label">06 / Resume</p>
+      <p class="section-label">Resume</p>
       <h2 class="section-title">Official résumé &amp; qualifications.</h2>
       <p class="section-lede">Preview my single-page PDF résumé or download a local copy directly.</p>
       <div class="resume-panel reveal-up">
@@ -1022,7 +1022,7 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
 
     <!-- 07 / LET'S CONNECT — PROFESSIONAL LINKS -->
     <section id="connect-section" class="section connect-section">
-      <p class="section-label">07 / Let's Connect</p>
+      <p class="section-label">Let's Connect</p>
       <h2 class="section-title">Find me across the web.</h2>
       <p class="section-lede" style="margin:0 auto 0;text-align:center">Always glad to connect — whether it's a role, a collaboration, or just a good conversation about tech.</p>
 
@@ -1097,7 +1097,7 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
 
     <!-- 08 / CONTACT FORM -->
     <section id="contact-section" class="section">
-      <p class="section-label">08 / Get in Touch</p>
+      <p class="section-label">Get in Touch</p>
       <h2 class="section-title">Interested in working together?</h2>
       <p class="section-lede">Got a role, a project, or just an idea worth discussing? Drop a message below and I'll get back to you.</p>
       <div class="contact-panel reveal-up">
