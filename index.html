@@ -171,23 +171,67 @@ p.section-lede{color:var(--text-muted);font-size:1.02rem;max-width:720px;margin-
 .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
 .about-text p{font-size:1rem;color:var(--text-muted);margin-bottom:18px;line-height:1.76}
 .about-text strong{color:var(--sky-light);font-weight:600}
-.about-card{background:var(--bg-card);border:1px solid var(--line-strong);border-radius:var(--radius);padding:26px;backdrop-filter:blur(10px)}
-.fact-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line);font-size:0.88rem}
+.about-card{
+  position:relative;overflow:hidden;
+  background:var(--bg-card);border:1px solid var(--line-strong);border-radius:var(--radius);
+  padding:28px;backdrop-filter:blur(10px);
+  transition:border-color 0.35s ease,transform 0.35s cubic-bezier(.22,1,.36,1),box-shadow 0.35s ease;
+}
+.about-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--sky-light),var(--emerald-light),var(--sky-primary));
+  background-size:200% 100%;animation:accentFlow 5s linear infinite;
+}
+@keyframes accentFlow{0%{background-position:0% 0}100%{background-position:200% 0}}
+.about-card:hover{border-color:var(--sky-light);transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,0.7),0 0 26px var(--sky-glow)}
+.fact-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 10px;margin:0 -10px;border-bottom:1px dashed var(--line);
+  font-size:0.88rem;border-radius:6px;
+  transition:background 0.25s ease,padding-left 0.25s ease,border-color 0.25s ease;
+}
 .fact-row:last-child{border-bottom:none}
-.fact-row .k{font-family:var(--mono);font-size:0.72rem;color:var(--text-subtle);text-transform:uppercase}
+.fact-row:hover{background:rgba(56,189,248,0.06);padding-left:14px;border-color:transparent}
+.fact-row .k{font-family:var(--mono);font-size:0.72rem;color:var(--text-subtle);text-transform:uppercase;transition:color 0.25s ease}
+.fact-row:hover .k{color:var(--sky-light)}
 .fact-row .v{color:#fff;font-weight:600;text-align:right}
 @media(max-width:860px){.about-grid{grid-template-columns:1fr}}
+
+/* Generic scroll-reveal utility */
+.reveal-up{opacity:0;transform:translateY(28px);filter:blur(4px);transition:opacity 0.7s cubic-bezier(.22,1,.36,1),transform 0.7s cubic-bezier(.22,1,.36,1),filter 0.7s cubic-bezier(.22,1,.36,1)}
+.reveal-up.revealed{opacity:1;transform:translateY(0);filter:blur(0)}
 
 /* ============================================================
    SKILLS
    ============================================================ */
 .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.skill-box{background:var(--bg-card);border:1px solid var(--line-strong);border-radius:var(--radius);padding:24px;backdrop-filter:blur(8px)}
-.skill-box h3{font-family:var(--display);font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:14px;border-bottom:1px dashed var(--line);padding-bottom:10px;display:flex;align-items:center;gap:8px}
-.skill-box h3::before{content:'';width:4px;height:16px;background:var(--emerald-light);border-radius:2px}
-.chip-list{display:flex;flex-wrap:wrap;gap:7px}
-.chip{font-family:var(--mono);font-size:0.7rem;padding:4px 10px;border-radius:4px;background:rgba(14,165,233,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--sky-light);transition:all 0.2s}
-.chip:hover{background:rgba(14,165,233,0.18);color:#fff}
+.skill-box{
+  position:relative;overflow:hidden;
+  background:var(--bg-card);border:1px solid var(--line-strong);border-radius:var(--radius);
+  padding:24px;backdrop-filter:blur(8px);
+  transition:border-color 0.35s ease,transform 0.35s cubic-bezier(.22,1,.36,1),box-shadow 0.35s ease;
+}
+/* Diagonal shine sweep on hover — same language as project cards */
+.skill-box::before{
+  content:'';position:absolute;top:0;left:-120%;width:60%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(56,189,248,0.14),transparent);
+  transform:skewX(-20deg);transition:left 0.75s ease;pointer-events:none;z-index:1;
+}
+.skill-box:hover::before{left:130%}
+.skill-box:hover{border-color:var(--sky-light);transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,0.7),0 0 24px var(--sky-glow)}
+.skill-box h3{
+  font-family:var(--display);font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:14px;
+  border-bottom:1px dashed var(--line);padding-bottom:10px;display:flex;align-items:center;gap:8px;
+  position:relative;z-index:2;
+}
+.skill-box h3::before{content:'';width:4px;height:16px;background:var(--emerald-light);border-radius:2px;box-shadow:0 0 10px var(--emerald-glow);transition:box-shadow 0.35s ease}
+.skill-box:hover h3::before{box-shadow:0 0 16px var(--emerald-glow)}
+.chip-list{display:flex;flex-wrap:wrap;gap:7px;position:relative;z-index:2}
+.chip{font-family:var(--mono);font-size:0.7rem;padding:4px 10px;border-radius:4px;background:rgba(14,165,233,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--sky-light);transition:all 0.25s cubic-bezier(.22,1,.36,1)}
+.chip:hover{background:var(--sky-primary);border-color:var(--sky-light);color:#fff;transform:translateY(-2px);box-shadow:0 6px 14px var(--sky-glow)}
+.skill-box:nth-of-type(1){transition-delay:0s}
+.skill-box:nth-of-type(2){transition-delay:.1s}
+.skill-box:nth-of-type(3){transition-delay:.2s}
 @media(max-width:900px){.skills-grid{grid-template-columns:1fr}}
 
 /* ============================================================
@@ -224,7 +268,7 @@ p.section-lede{color:var(--text-muted);font-size:1.02rem;max-width:720px;margin-
 /* ============================================================
    PROJECT JOURNEY — CENTERED ALTERNATING TIMELINE with SCROLL ANIM
    ============================================================ */
-.center-timeline-wrap{position:relative;max-width:1140px;margin:40px auto 0;padding:30px 0 50px}
+.center-timeline-wrap{position:relative;max-width:980px;margin:40px auto 0;padding:30px 0 50px}
 /* Vertical center line */
 .center-timeline-line{
   position:absolute;top:0;bottom:0;left:50%;width:3px;
@@ -239,39 +283,48 @@ p.section-lede{color:var(--text-muted);font-size:1.02rem;max-width:720px;margin-
 }
 
 .timeline-row{
-  position:relative;display:flex;margin-bottom:60px;width:100%;z-index:2;
-  opacity:0;transition:opacity 0.65s ease,transform 0.65s ease;
+  position:relative;display:flex;margin-bottom:42px;width:100%;z-index:2;
+  opacity:0;filter:blur(6px);
+  transition:opacity 0.7s cubic-bezier(.22,1,.36,1),
+             transform 0.7s cubic-bezier(.22,1,.36,1),
+             filter 0.7s cubic-bezier(.22,1,.36,1);
 }
-.timeline-row.right{justify-content:flex-end;transform:translateX(60px)}
-.timeline-row.left{justify-content:flex-start;transform:translateX(-60px)}
-.timeline-row.revealed{opacity:1;transform:translateX(0) !important}
+.timeline-row.right{justify-content:flex-end;transform:translateX(50px) scale(0.96)}
+.timeline-row.left{justify-content:flex-start;transform:translateX(-50px) scale(0.96)}
+.timeline-row.revealed{opacity:1;filter:blur(0);transform:translateX(0) scale(1) !important}
 
 /* Center numbered node */
 .timeline-node-center{
-  position:absolute;left:50%;top:28px;transform:translate(-50%,-50%);
-  width:60px;height:60px;border-radius:50%;background:var(--bg-card-solid);
+  position:absolute;left:50%;top:24px;transform:translate(-50%,-50%);
+  width:46px;height:46px;border-radius:50%;background:var(--bg-card-solid);
   border:2px solid var(--emerald-light);color:var(--emerald-light);
-  font-family:var(--display);font-size:1.15rem;font-weight:800;
+  font-family:var(--display);font-size:0.95rem;font-weight:800;
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 0 18px var(--emerald-glow);z-index:5;
-  transition:border-color 0.4s,color 0.4s,box-shadow 0.4s,transform 0.3s;
+  transition:border-color 0.4s,color 0.4s,box-shadow 0.4s,transform 0.4s cubic-bezier(.34,1.56,.64,1);
 }
 .timeline-row.revealed .timeline-node-center{
   border-color:var(--sky-light);color:var(--sky-light);
   box-shadow:0 0 22px var(--sky-glow);
+  animation:nodePulse 2.4s ease-in-out infinite;
 }
-.timeline-row:hover .timeline-node-center{transform:translate(-50%,-50%) scale(1.12)}
+.timeline-row:hover .timeline-node-center{transform:translate(-50%,-50%) scale(1.18) rotate(8deg)}
+@keyframes nodePulse{
+  0%,100%{box-shadow:0 0 14px var(--sky-glow)}
+  50%{box-shadow:0 0 26px var(--sky-glow)}
+}
 
 /* Connector line from node to card */
-.timeline-card-wrap{width:44%;position:relative;z-index:2}
+.timeline-card-wrap{width:40%;position:relative;z-index:2}
+.node-actions .btn-primary,.node-actions .btn-secondary{padding:7px 13px;font-size:0.66rem;gap:5px}
 .timeline-row.right .timeline-card-wrap::before{
-  content:'';position:absolute;top:28px;left:-13.5%;width:13.5%;height:2px;
+  content:'';position:absolute;top:24px;left:-13.5%;width:13.5%;height:2px;
   background:linear-gradient(90deg,var(--emerald-light),rgba(56,189,248,0.15));
   transform:scaleX(0);transform-origin:right;
   transition:transform 0.6s ease 0.2s;
 }
 .timeline-row.left .timeline-card-wrap::after{
-  content:'';position:absolute;top:28px;right:-13.5%;width:13.5%;height:2px;
+  content:'';position:absolute;top:24px;right:-13.5%;width:13.5%;height:2px;
   background:linear-gradient(90deg,rgba(56,189,248,0.15),var(--emerald-light));
   transform:scaleX(0);transform-origin:left;
   transition:transform 0.6s ease 0.2s;
@@ -281,33 +334,48 @@ p.section-lede{color:var(--text-muted);font-size:1.02rem;max-width:720px;margin-
 
 /* Project card */
 .node-card{
+  position:relative;overflow:hidden;
   background:var(--bg-card);border:1px solid var(--line-strong);border-radius:var(--radius);
-  padding:26px;backdrop-filter:blur(10px);
-  transition:border-color 0.25s,transform 0.25s,box-shadow 0.25s;
-  display:flex;flex-direction:column;gap:14px;
+  padding:13px;backdrop-filter:blur(10px);
+  transition:border-color 0.35s ease,transform 0.35s cubic-bezier(.22,1,.36,1),box-shadow 0.35s ease;
+  display:flex;flex-direction:column;gap:7px;
 }
-.node-card:hover{border-color:var(--sky-light);transform:translateY(-5px);box-shadow:0 16px 44px rgba(0,0,0,0.7),0 0 22px var(--sky-glow)}
-.node-preview{width:100%;height:185px;border-radius:8px;overflow:hidden;background:#0F172A;border:1px solid var(--line)}
-.node-preview img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease}
-.node-card:hover .node-preview img{transform:scale(1.06)}
-.node-preview-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:1rem;font-weight:700}
-.node-cat{font-family:var(--mono);font-size:0.68rem;color:var(--sky-light);text-transform:uppercase;font-weight:700}
-.node-title{font-family:var(--display);font-size:1.22rem;font-weight:800;color:#fff;line-height:1.3}
-.node-desc{font-size:0.88rem;color:var(--text-muted);line-height:1.62}
-.node-chips{display:flex;flex-wrap:wrap;gap:6px}
-.node-pill{font-family:var(--mono);font-size:0.65rem;padding:4px 9px;border-radius:4px;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--sky-light);transition:all 0.2s}
+/* Diagonal shine sweep on hover */
+.node-card::before{
+  content:'';position:absolute;top:0;left:-120%;width:60%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(56,189,248,0.14),transparent);
+  transform:skewX(-20deg);transition:left 0.75s ease;pointer-events:none;z-index:1;
+}
+.node-card:hover::before{left:130%}
+.node-card:hover{border-color:var(--sky-light);transform:translateY(-6px) scale(1.015);box-shadow:0 18px 40px rgba(0,0,0,0.7),0 0 24px var(--sky-glow)}
+.node-preview{width:100%;height:104px;border-radius:6px;overflow:hidden;background:#0F172A;border:1px solid var(--line)}
+.node-preview img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s cubic-bezier(.22,1,.36,1)}
+.node-card:hover .node-preview img{transform:scale(1.08)}
+.node-preview-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.7rem;font-weight:700}
+.node-cat{font-family:var(--mono);font-size:0.56rem;color:var(--sky-light);text-transform:uppercase;font-weight:700}
+.node-title{font-family:var(--display);font-size:0.92rem;font-weight:800;color:#fff;line-height:1.25}
+.node-desc{font-size:0.72rem;color:var(--text-muted);line-height:1.48}
+.node-chips{display:flex;flex-wrap:wrap;gap:4px}
+.node-pill{font-family:var(--mono);font-size:0.55rem;padding:2px 6px;border-radius:4px;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:var(--sky-light);transition:all 0.2s}
 .node-card:hover .node-pill{background:rgba(56,189,248,0.13);border-color:rgba(56,189,248,0.4)}
-.node-actions{display:flex;gap:9px;flex-wrap:wrap}
+.node-actions{display:flex;gap:6px;flex-wrap:wrap;position:relative;z-index:2}
+
+.timeline-row:nth-of-type(1){transition-delay:0s}
+.timeline-row:nth-of-type(2){transition-delay:.08s}
+.timeline-row:nth-of-type(3){transition-delay:.16s}
+.timeline-row:nth-of-type(4){transition-delay:.24s}
+.timeline-row:nth-of-type(5){transition-delay:.32s}
+.timeline-row:nth-of-type(6){transition-delay:.4s}
 
 @media(max-width:900px){
-  .center-timeline-line{left:26px}
+  .center-timeline-line{left:22px}
   .timeline-row,.timeline-row.right,.timeline-row.left{justify-content:flex-end}
-  .timeline-node-center{left:26px;width:48px;height:48px;font-size:1rem}
-  .timeline-card-wrap{width:calc(100% - 62px)}
+  .timeline-node-center{left:22px;width:40px;height:40px;font-size:0.85rem}
+  .timeline-card-wrap{width:calc(100% - 52px)}
   .timeline-row.right .timeline-card-wrap::before,
   .timeline-row.left .timeline-card-wrap::after{display:none}
-  .timeline-row.right,.timeline-row.left{transform:translateY(20px)}
-  .timeline-row.revealed{transform:translateY(0) !important}
+  .timeline-row.right,.timeline-row.left{transform:translateY(20px) scale(0.97)}
+  .timeline-row.revealed{transform:translateY(0) scale(1) !important}
 }
 
 /* ============================================================
@@ -503,7 +571,7 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
     <section id="top" class="hero">
       <div class="hero-card">
         <p class="eyebrow">Computer Science Engineer</p>
-        <h1>I engineer systems,<br/><span>train intelligence, &amp;decode insights.</span></h1>
+        <h1>I engineer systems,<br/><span>train intelligence, decode insights.</span></h1>
         <div class="role-badges">
           <span class="role-badge">Software Engineer</span>
           <span class="role-badge">AI / ML Engineer</span>
@@ -530,16 +598,16 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
       <p class="section-label">01 / About Me</p>
       <h2 class="section-title">Engineering across three core disciplines.</h2>
       <p class="section-lede">Combining computer science fundamentals with hands-on systems reliability, machine learning, and data analytics.</p>
-      <div class="about-grid">
+      <div class="about-grid reveal-up">
         <div class="about-text">
-          <p>I am a Computer Science &amp; Engineering undergraduate at Allenhouse Institute of Technology, Kanpur. My engineering journey centers on building software that remains correct, performant, and deployable after initial development.</p>
-          <p>Over the past year, I have engineered an <strong>Enterprise Digital Twin &amp; Decision Intelligence Platform</strong> built additively across 12 weeks, developed distributed <strong>Event-Driven Order Orchestrators</strong> using FastAPI and Redis Streams, and authored <strong>Customer Analytics &amp; Churn Risk Models</strong> in SQL and Power BI.</p>
-          <p>I have also participated in applied virtual data science experiences with <strong>BCG X</strong> and <strong>British Airways</strong> via Forage, competed in hackathons like EY Techathon 5.0, and hold industry certifications across Python, SQL, and Cloud AI.</p>
+          <p>I am a Computer Science &amp; Engineering undergraduate at Allenhouse Institute of Technology, Kanpur — and my journey has always started with the fundamentals. Before building anything, I make sure I understand how it truly works underneath.</p>
+          <p>That mindset led me to go deep into <strong>System Design</strong>, <strong>Operating Systems</strong>, and <strong>Computer Networking</strong> — not just as theory, but as concepts I actively applied. Every project I build grows out of this understanding, turning core CS principles into systems that are correct, performant, and reliable.</p>
+          <p>Beyond academics, I have sharpened this thinking through applied virtual experiences with <strong>BCG X</strong> and <strong>British Airways</strong> via Forage, and tested it under pressure at hackathons like EY Techathon 5.0 — always looking for the next problem worth understanding deeply.</p>
         </div>
         <div class="about-card">
           <div class="fact-row"><span class="k">Location</span><span class="v">Kanpur, India</span></div>
           <div class="fact-row"><span class="k">Education</span><span class="v">B.Tech CSE, Expected 07/2027</span></div>
-          <div class="fact-row"><span class="k">Institute</span><span class="v">Allenhouse Institute of Tech</span></div>
+          <div class="fact-row"><span class="k">Institute</span><span class="v">Allenhouse Institute of Technology</span></div>
           <div class="fact-row"><span class="k">Languages</span><span class="v">Hindi, English, Arabic</span></div>
           <div class="fact-row"><span class="k">LeetCode</span><span class="v">200+ Problems Solved</span></div>
           <div class="fact-row"><span class="k">Status</span><span class="v" style="color:var(--emerald-light)">Open to Opportunities</span></div>
@@ -553,19 +621,19 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
       <h2 class="section-title">Technical capabilities &amp; toolkit.</h2>
       <p class="section-lede">Organized by specialization areas based on actual projects, certifications, and codebase experience.</p>
       <div class="skills-grid">
-        <div class="skill-box">
+        <div class="skill-box reveal-up">
           <h3>Data Analytics</h3>
           <div class="chip-list">
             <span class="chip">Python</span><span class="chip">SQL (Window/CTEs)</span><span class="chip">Power BI</span><span class="chip">DAX Measures</span><span class="chip">Pandas &amp; NumPy</span><span class="chip">EDA</span><span class="chip">Matplotlib &amp; Seaborn</span><span class="chip">CLV Modeling</span><span class="chip">RFM Segmentation</span>
           </div>
         </div>
-        <div class="skill-box">
+        <div class="skill-box reveal-up">
           <h3>Python Backend</h3>
           <div class="chip-list">
             <span class="chip">Python 3.12</span><span class="chip">FastAPI</span><span class="chip">Asyncio</span><span class="chip">RESTful APIs</span><span class="chip">PostgreSQL &amp; SQLAlchemy</span><span class="chip">MongoDB</span><span class="chip">Redis Streams</span><span class="chip">RabbitMQ</span><span class="chip">Saga Pattern</span>
           </div>
         </div>
-        <div class="skill-box">
+        <div class="skill-box reveal-up">
           <h3>AI / ML / Data Science</h3>
           <div class="chip-list">
             <span class="chip">Scikit-Learn</span><span class="chip">TensorFlow</span><span class="chip">Time-Series</span><span class="chip">Agentic AI (ReAct)</span><span class="chip">RAG &amp; Vector Search</span><span class="chip">AWS Bedrock SDK</span><span class="chip">MLflow</span><span class="chip">Docker &amp; Kubernetes</span><span class="chip">GitHub Actions</span>
@@ -1223,7 +1291,7 @@ function handleFormSubmit(e) {
 
 /* ─── SCROLL ANIMATIONS (IntersectionObserver) ───────────── */
 function initScrollAnimations() {
-  const rows = document.querySelectorAll('.timeline-row:not(.revealed)');
+  const rows = document.querySelectorAll('.timeline-row:not(.revealed), .reveal-up:not(.revealed)');
   if (!rows.length) return;
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
