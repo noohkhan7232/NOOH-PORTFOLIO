@@ -151,7 +151,7 @@ p.section-lede{color:var(--text-muted);font-size:1.02rem;max-width:720px;margin-
    HOME — HERO (no profile photo)
    ============================================================ */
 .hero{position:relative;padding:72px 0 56px;min-height:78vh;display:flex;flex-direction:column;justify-content:center}
-.hero-card{background:var(--bg-card);border:1px solid var(--line-strong);border-radius:var(--radius);padding:48px 52px;backdrop-filter:blur(12px);box-shadow:0 16px 45px rgba(0,0,0,0.8);max-width:860px}
+.hero-card{background:var(--bg-card);border:1px solid var(--line-strong);border-radius:var(--radius);padding:34px 38px;backdrop-filter:blur(12px);box-shadow:0 16px 45px rgba(0,0,0,0.8);max-width:860px}
 .eyebrow{font-family:var(--mono);font-size:0.76rem;letter-spacing:0.16em;color:var(--emerald-light);font-weight:700;margin-bottom:14px;text-transform:uppercase;display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:'';width:32px;height:2px;background:var(--emerald-light)}
 .hero h1{font-family:var(--display);font-size:clamp(2.6rem,5.5vw,4.2rem);font-weight:800;line-height:1.08;margin-bottom:18px;color:#fff;letter-spacing:-0.02em}
@@ -160,10 +160,23 @@ p.section-lede{color:var(--text-muted);font-size:1.02rem;max-width:720px;margin-
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
 .role-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
 .role-badge{font-family:var(--mono);font-size:0.7rem;padding:5px 12px;border-radius:20px;background:rgba(56,189,248,0.08);border:1px solid var(--line-strong);color:var(--sky-light);letter-spacing:0.04em}
-.metrics-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);padding-top:22px}
-.metric-item b{font-family:var(--display);font-size:1.55rem;font-weight:800;color:#fff;display:block;line-height:1}
-.metric-item span{font-family:var(--mono);font-size:0.66rem;color:var(--text-subtle);text-transform:uppercase;margin-top:4px;display:block}
-@media(max-width:760px){.hero-card{padding:28px 24px}.metrics-bar{grid-template-columns:repeat(2,1fr);gap:14px}}
+.metrics-bar{display:flex;flex-wrap:wrap;gap:14px;border-top:1px solid var(--line);padding-top:22px}
+.metric-item{
+  flex:0 1 110px;position:relative;overflow:hidden;
+  border:1px solid var(--line-strong);border-radius:9px;padding:11px 12px;
+  background:rgba(255,255,255,0.02);
+  transition:border-color 0.3s ease,transform 0.3s cubic-bezier(.22,1,.36,1),box-shadow 0.3s ease,background 0.3s ease;
+}
+.metric-item::before{
+  content:'';position:absolute;top:0;left:-120%;width:55%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(56,189,248,0.10),transparent);
+  transform:skewX(-20deg);transition:left 0.8s ease;pointer-events:none;
+}
+.metric-item:hover::before{left:130%}
+.metric-item:hover{border-color:var(--sky-light);transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,0.5),0 0 16px var(--sky-glow);background:rgba(56,189,248,0.03)}
+.metric-item b{font-family:var(--display);font-size:1.3rem;font-weight:800;color:#fff;display:block;line-height:1;position:relative;z-index:2}
+.metric-item span{font-family:var(--mono);font-size:0.6rem;color:var(--text-subtle);text-transform:uppercase;margin-top:5px;display:block;position:relative;z-index:2}
+@media(max-width:760px){.hero-card{padding:28px 24px}.metric-item{flex:1 1 45%}}
 
 /* ============================================================
    ABOUT
@@ -500,12 +513,49 @@ p.section-lede{color:var(--text-muted);font-size:1.02rem;max-width:720px;margin-
 /* ============================================================
    CONTACT FORM
    ============================================================ */
-.contact-panel{background:var(--bg-card-solid);border:1px solid var(--line-strong);border-radius:12px;padding:40px;box-shadow:0 20px 60px rgba(0,0,0,0.8)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
-.form-field input,.form-field textarea{width:100%;background:rgba(7,12,20,0.7);border:1px solid var(--line);border-radius:6px;padding:13px 15px;font-family:var(--body);font-size:0.9rem;color:#fff;margin-bottom:14px}
-.form-field input:focus,.form-field textarea:focus{outline:none;border-color:var(--sky-light);box-shadow:0 0 10px var(--sky-glow)}
-.form-field textarea{height:125px;resize:vertical}
-@media(max-width:700px){.contact-grid{grid-template-columns:1fr}}
+.contact-panel{
+  position:relative;overflow:hidden;
+  background:var(--bg-card-solid);border:1px solid var(--line-strong);border-radius:14px;
+  padding:44px;box-shadow:0 20px 60px rgba(0,0,0,0.8);
+  transition:border-color 0.35s ease,box-shadow 0.35s ease;
+}
+.contact-panel::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--sky-light),var(--emerald-light),var(--sky-primary));
+  background-size:200% 100%;animation:accentFlow 5s linear infinite;
+}
+.contact-panel:hover{border-color:rgba(56,189,248,0.35);box-shadow:0 24px 70px rgba(0,0,0,0.85),0 0 30px rgba(56,189,248,0.08)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:22px}
+.form-field{position:relative;margin-bottom:16px}
+.form-field label{
+  display:block;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.06em;
+  color:var(--text-subtle);margin-bottom:7px;transition:color 0.25s ease;
+}
+.form-field:focus-within label{color:var(--sky-light)}
+.form-field input,.form-field textarea{
+  width:100%;background:rgba(7,12,20,0.55);border:1px solid var(--line);border-radius:8px;
+  padding:13px 15px;font-family:var(--body);font-size:0.9rem;color:#fff;
+  transition:border-color 0.3s ease,box-shadow 0.3s ease,background 0.3s ease;
+}
+.form-field input::placeholder,.form-field textarea::placeholder{color:var(--text-subtle);opacity:0.7}
+.form-field input:hover,.form-field textarea:hover{border-color:rgba(56,189,248,0.35)}
+.form-field input:focus,.form-field textarea:focus{
+  outline:none;border-color:var(--sky-light);background:rgba(7,12,20,0.85);
+  box-shadow:0 0 0 3px rgba(56,189,248,0.12),0 0 18px var(--sky-glow);
+}
+.form-field textarea{height:100%;min-height:178px;resize:vertical}
+.contact-grid > div:last-child{display:flex;flex-direction:column}
+.contact-grid > div:last-child .form-field{flex:1;display:flex;flex-direction:column}
+.contact-grid > div:last-child .form-field textarea{flex:1}
+.contact-panel .btn-primary{position:relative;overflow:hidden}
+.contact-panel .btn-primary::before{
+  content:'';position:absolute;top:0;left:-120%;width:55%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.3),transparent);
+  transform:skewX(-20deg);transition:left 0.7s ease;
+}
+.contact-panel .btn-primary:hover::before{left:130%}
+.contact-panel .btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 26px var(--sky-glow)}
+@media(max-width:700px){.contact-grid{grid-template-columns:1fr}.form-field textarea{min-height:150px}}
 
 /* ============================================================
    FOOTER
@@ -649,7 +699,7 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
   <div class="nav-inner">
     <div class="brand" onclick="showView('home')">
       <img src="assets/favicon.png" alt="NK">
-      <span>Nooh Khan</span>
+      <span>NOOH <span style="color:#7DD3FC">KHAN</span></span>
     </div>
     <nav class="nav-links">
       <a onclick="showView('home')" data-view="home" class="active">Home</a>
@@ -683,17 +733,23 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
           <span class="role-badge">Data Analyst</span>
           <span class="role-badge">Python Backend</span>
           <span class="role-badge">Data Science</span>
+          <span class="role-badge">Data Structures &amp; Algorithms</span>
+          <span class="role-badge">System Design</span>
+          <span class="role-badge">Operating Systems</span>
+          <span class="role-badge">Computer Networking</span>
         </div>
-        <p class="lead">Computer Science undergraduate building production-ready systems — from distributed Python microservices and 10-layer digital twins to AI agents and retail Power BI analytics dashboards.</p>
+        <p class="lead">Computer Science undergraduate building production-ready systems across software engineering, AI/ML, backend development, and data analytics, with a strong foundation in Python, system design, networking, operating systems, and DSA.</p>
         <div class="hero-cta">
-          <button class="btn-primary" onclick="scrollToSection('projects-section')">Explore Projects Journey ↓</button>
-          <a class="btn-secondary" href="assets/Nooh_Khan_Resume.pdf" target="_blank" rel="noopener">Download Resume PDF 📄</a>
+          <button class="btn-primary" onclick="scrollToSection('projects-section')">Explore My Work ↓</button>
         </div>
         <div class="metrics-bar">
           <div class="metric-item"><b>200+</b><span>LeetCode Solved</span></div>
-          <div class="metric-item"><b>10</b><span>Digital Twin Layers</span></div>
+          <div class="metric-item"><b>10+</b><span>Projects Built</span></div>
+          
+          <div class="metric-item"><b>500+</b><span>GitHub Contributions</span></div>
+          <div class="metric-item"><b>5+</b><span>Hackathons</span></div>
+          <div class="metric-item"><b>15+</b><span>Technologies</span></div>
           <div class="metric-item"><b>2027</b><span>B.Tech CSE</span></div>
-          <div class="metric-item"><b>3</b><span>Core Domains</span></div>
         </div>
       </div>
     </section>
@@ -1043,17 +1099,17 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
     <section id="contact-section" class="section">
       <p class="section-label">08 / Get in Touch</p>
       <h2 class="section-title">Interested in working together?</h2>
-      <p class="section-lede">I am open to Software Engineering, AI/ML, and Data Analytics roles. Send a message using the form below.</p>
-      <div class="contact-panel">
+      <p class="section-lede">Got a role, a project, or just an idea worth discussing? Drop a message below and I'll get back to you.</p>
+      <div class="contact-panel reveal-up">
         <form onsubmit="handleFormSubmit(event)">
           <div class="contact-grid">
             <div>
-              <div class="form-field"><input type="text" id="firstName" placeholder="First name" required/></div>
-              <div class="form-field"><input type="text" id="lastName" placeholder="Last name" required/></div>
-              <div class="form-field"><input type="email" id="email" placeholder="Your email address" required/></div>
+              <div class="form-field"><label for="firstName">First Name</label><input type="text" id="firstName" placeholder="e.g. Nooh" required/></div>
+              <div class="form-field"><label for="lastName">Last Name</label><input type="text" id="lastName" placeholder="e.g. Khan" required/></div>
+              <div class="form-field"><label for="email">Email Address</label><input type="email" id="email" placeholder="you@example.com" required/></div>
             </div>
             <div>
-              <div class="form-field"><textarea id="message" placeholder="Tell me about the role, project, or inquiry..." required></textarea></div>
+              <div class="form-field"><label for="message">Message</label><textarea id="message" placeholder="Tell me about the role, project, or inquiry..." required></textarea></div>
             </div>
           </div>
           <button type="submit" class="btn-primary">Send Message ✉️</button>
