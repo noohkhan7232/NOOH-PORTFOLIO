@@ -382,22 +382,65 @@ p.section-lede{color:var(--text-muted);font-size:1.02rem;max-width:720px;margin-
    SPECIALIZATIONS — HUB CARDS (homepage overview)
    ============================================================ */
 .spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
-.spec-card{background:var(--bg-card);border:1px solid var(--line-strong);border-radius:var(--radius);padding:28px 22px;transition:all 0.25s ease;backdrop-filter:blur(10px);display:flex;flex-direction:column}
-.spec-card:hover{transform:translateY(-5px);border-color:var(--sky-light);box-shadow:0 14px 40px rgba(0,0,0,0.8),0 0 22px var(--sky-glow)}
-.spec-num{font-family:var(--mono);font-size:0.7rem;color:var(--emerald-light);font-weight:700;margin-bottom:9px}
-.spec-card h3{font-family:var(--display);font-weight:800;font-size:1.3rem;margin-bottom:11px;color:#fff}
-.spec-card p{font-size:0.9rem;color:var(--text-muted);margin-bottom:20px;line-height:1.6}
-.spec-card .btn-primary{margin-top:auto;width:fit-content}
+.spec-card{
+  position:relative;overflow:hidden;
+  background:var(--bg-card);border:1px solid var(--line-strong);border-radius:var(--radius);
+  padding:28px 22px;backdrop-filter:blur(10px);display:flex;flex-direction:column;
+  transition:border-color 0.35s ease,transform 0.35s cubic-bezier(.22,1,.36,1),box-shadow 0.35s ease;
+}
+.spec-card::before{
+  content:'';position:absolute;top:0;left:-120%;width:60%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(56,189,248,0.14),transparent);
+  transform:skewX(-20deg);transition:left 0.75s ease;pointer-events:none;z-index:1;
+}
+.spec-card:hover::before{left:130%}
+.spec-card:hover{transform:translateY(-6px);border-color:var(--sky-light);box-shadow:0 18px 44px rgba(0,0,0,0.8),0 0 24px var(--sky-glow)}
+.spec-num{font-family:var(--mono);font-size:0.7rem;color:var(--emerald-light);font-weight:700;margin-bottom:9px;position:relative;z-index:2;transition:letter-spacing 0.3s ease}
+.spec-card:hover .spec-num{letter-spacing:0.05em}
+.spec-card h3{font-family:var(--display);font-weight:800;font-size:1.3rem;margin-bottom:11px;margin-top:2px;color:#fff;position:relative;z-index:2}
+.spec-card p{font-size:0.9rem;color:var(--text-muted);margin-bottom:20px;line-height:1.6;position:relative;z-index:2}
+.spec-card .btn-primary{margin-top:auto;width:fit-content;position:relative;z-index:2;transition:transform 0.25s ease}
+.spec-card .btn-primary:hover{transform:translateX(3px)}
+.spec-card:nth-of-type(1){transition-delay:0s}
+.spec-card:nth-of-type(2){transition-delay:.1s}
+.spec-card:nth-of-type(3){transition-delay:.2s}
 @media(max-width:860px){.spec-grid{grid-template-columns:1fr}}
 
 /* ============================================================
    RESUME
    ============================================================ */
-.resume-panel{background:var(--bg-card);border:1px solid var(--line-strong);border-radius:var(--radius);padding:36px;backdrop-filter:blur(12px);display:grid;grid-template-columns:1fr 1.2fr;gap:38px;align-items:center}
+.resume-panel{
+  position:relative;overflow:hidden;
+  background:var(--bg-card);border:1px solid var(--line-strong);border-radius:var(--radius);
+  padding:36px;backdrop-filter:blur(12px);display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center;
+  transition:border-color 0.35s ease,box-shadow 0.35s ease;
+}
+.resume-panel:hover{border-color:var(--sky-light);box-shadow:0 18px 44px rgba(0,0,0,0.7),0 0 26px var(--sky-glow)}
 .resume-info h3{font-family:var(--display);font-size:1.45rem;font-weight:800;color:#fff;margin-bottom:12px}
 .resume-info p{font-size:0.94rem;color:var(--text-muted);margin-bottom:22px;line-height:1.7}
-.resume-preview-box{border:1px solid var(--line-strong);border-radius:8px;overflow:hidden;background:#fff;height:310px}
-.resume-preview-box iframe{width:100%;height:100%;border:none}
+.resume-preview-box{
+  position:relative;overflow:hidden;height:220px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  border:1px solid var(--line-strong);border-radius:8px;
+  background:linear-gradient(160deg,rgba(14,165,233,0.08),rgba(16,185,129,0.05));
+  cursor:pointer;text-decoration:none;
+  transition:border-color 0.3s ease,transform 0.35s cubic-bezier(.22,1,.36,1),box-shadow 0.3s ease;
+}
+.resume-preview-box::before{
+  content:'';position:absolute;top:0;left:-120%;width:55%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(56,189,248,0.16),transparent);
+  transform:skewX(-20deg);transition:left 0.8s ease;pointer-events:none;
+}
+.resume-preview-box:hover::before{left:130%}
+.resume-preview-box:hover{border-color:var(--sky-light);transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,0.6),0 0 22px var(--sky-glow)}
+.resume-preview-icon{
+  width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--sky-primary),#0284C7);font-size:1.5rem;
+  box-shadow:0 6px 18px var(--sky-glow);transition:transform 0.35s cubic-bezier(.34,1.56,.64,1);
+}
+.resume-preview-box:hover .resume-preview-icon{transform:scale(1.1) rotate(-4deg)}
+.resume-preview-title{font-family:var(--display);font-weight:800;font-size:1rem;color:#fff}
+.resume-preview-sub{font-family:var(--mono);font-size:0.72rem;color:var(--sky-light);letter-spacing:0.04em}
 @media(max-width:860px){.resume-panel{grid-template-columns:1fr}}
 
 /* ============================================================
@@ -408,24 +451,43 @@ p.section-lede{color:var(--text-muted);font-size:1.02rem;max-width:720px;margin-
   display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:30px;margin-bottom:40px;
 }
 .connect-link{
+  position:relative;overflow:hidden;
   display:flex;align-items:center;gap:10px;padding:14px 22px;
   background:var(--bg-card);border:1px solid var(--line-strong);border-radius:10px;
   font-family:var(--mono);font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;
-  color:var(--text-bright);transition:all 0.25s ease;backdrop-filter:blur(10px);
-  white-space:nowrap;
+  color:var(--text-bright);transition:transform 0.3s cubic-bezier(.22,1,.36,1),border-color 0.3s ease,color 0.3s ease,box-shadow 0.3s ease;
+  backdrop-filter:blur(10px);white-space:nowrap;
 }
+.connect-link::before{
+  content:'';position:absolute;top:0;left:-120%;width:55%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(56,189,248,0.16),transparent);
+  transform:skewX(-20deg);transition:left 0.7s ease;pointer-events:none;
+}
+.connect-link:hover::before{left:130%}
 .connect-link:hover{transform:translateY(-4px);border-color:var(--sky-light);color:var(--sky-light);box-shadow:0 8px 22px rgba(0,0,0,0.5),0 0 14px var(--sky-glow)}
-.connect-link-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.connect-link-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;position:relative;z-index:2;transition:transform 0.35s cubic-bezier(.34,1.56,.64,1)}
+.connect-link:hover .connect-link-icon{transform:scale(1.1) rotate(-4deg)}
+.connect-link span{position:relative;z-index:2}
 .connect-link-icon.gh{background:rgba(255,255,255,0.06)}
 .connect-link-icon.li{background:rgba(10,102,194,0.2)}
 .connect-link-icon.lc{background:rgba(255,161,22,0.15)}
-.connect-link-icon.un{background:rgba(16,185,129,0.12)}
+.connect-link-icon.un{background:rgba(0,194,168,0.15)}
 .connect-link-icon.up{background:rgba(20,172,140,0.15)}
 .connect-link-icon.em{background:rgba(56,189,248,0.12)}
+.connect-link-icon.ig{background:linear-gradient(135deg,rgba(240,148,51,0.22),rgba(230,60,141,0.22),rgba(188,52,231,0.22))}
+.connect-link-icon.tw{background:rgba(255,255,255,0.08)}
 .connect-contact-row{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;font-family:var(--mono);font-size:0.82rem;color:var(--text-muted)}
 .connect-contact-item{display:flex;align-items:center;gap:7px}
 .connect-contact-item a{color:var(--sky-light);transition:color 0.2s}
 .connect-contact-item a:hover{color:#fff}
+.connect-link:nth-of-type(1){transition-delay:0s}
+.connect-link:nth-of-type(2){transition-delay:.05s}
+.connect-link:nth-of-type(3){transition-delay:.1s}
+.connect-link:nth-of-type(4){transition-delay:.15s}
+.connect-link:nth-of-type(5){transition-delay:.2s}
+.connect-link:nth-of-type(6){transition-delay:.25s}
+.connect-link:nth-of-type(7){transition-delay:.3s}
+.connect-link:nth-of-type(8){transition-delay:.35s}
 
 /* ============================================================
    CONTACT FORM
@@ -460,6 +522,41 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
 .cat-section{padding:52px 0 0}
 .cat-section-title{font-family:var(--display);font-size:1.7rem;font-weight:800;color:#fff;margin-bottom:22px;display:flex;align-items:center;gap:12px}
 .cat-section-title::before{content:'';width:4px;height:22px;background:var(--emerald-light);border-radius:2px}
+
+/* ============================================================
+   JOURNEY PANEL — narrative block on hub pages
+   ============================================================ */
+.journey-panel{
+  position:relative;overflow:hidden;margin-top:6px;
+  background:var(--bg-card);border:1px solid var(--line-strong);border-radius:var(--radius);
+  padding:44px 42px;backdrop-filter:blur(10px);
+  transition:border-color 0.35s ease,transform 0.35s cubic-bezier(.22,1,.36,1),box-shadow 0.35s ease;
+}
+.journey-panel::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--sky-light),var(--emerald-light),var(--sky-primary));
+  background-size:200% 100%;animation:accentFlow 5s linear infinite;
+}
+.journey-panel::after{
+  content:'';position:absolute;top:0;left:-120%;width:55%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(56,189,248,0.10),transparent);
+  transform:skewX(-20deg);transition:left 0.9s ease;pointer-events:none;
+}
+.journey-panel:hover::after{left:130%}
+.journey-panel:hover{border-color:var(--sky-light);transform:translateY(-4px);box-shadow:0 18px 44px rgba(0,0,0,0.7),0 0 26px var(--sky-glow)}
+.journey-panel .journey-quote-mark{
+  font-family:var(--display);font-size:3.6rem;font-weight:800;line-height:1;
+  color:var(--emerald-light);opacity:0.35;margin-bottom:4px;
+}
+.journey-panel p{
+  position:relative;z-index:2;
+  font-family:var(--display);font-size:clamp(1.15rem,2.2vw,1.5rem);font-weight:600;
+  line-height:1.55;color:var(--text-bright);max-width:840px;
+}
+.journey-panel p strong{
+  background:linear-gradient(110deg,var(--sky-light),var(--emerald-light));
+  -webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800;
+}
 
 /* ============================================================
    PROJECT DETAIL VIEW (inside SPA)
@@ -787,22 +884,19 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
       <h2 class="section-title">Deep dive technical category hubs.</h2>
       <p class="section-lede">Explore dedicated hub sections with in-depth projects, skills, and resume highlights for each specialization.</p>
       <div class="spec-grid">
-        <div class="spec-card">
-          <span class="spec-num">SPECIALIZATION 01</span>
+        <div class="spec-card reveal-up">
           <h3>Data Analytics</h3>
-          <p>Retail transaction pipelines, SQL window aggregations, dynamic Power BI dashboards, DAX measures, and Customer Lifetime Value churn modeling.</p>
+          <p>Let's explore what I've built in Data Analytics — dashboards, models, and insights shaped from real data.</p>
           <button class="btn-primary" onclick="showView('data-analytics')">Explore Analytics Hub ↗</button>
         </div>
-        <div class="spec-card">
-          <span class="spec-num">SPECIALIZATION 02</span>
+        <div class="spec-card reveal-up">
           <h3>Python Backend Development</h3>
-          <p>Distributed microservices, event-driven Saga pattern orchestrators, FastAPI REST APIs, Redis Streams, AWS Bedrock middleware, and OS memory simulators.</p>
+          <p>Let's explore what I've built in Python Backend — distributed systems engineered for real-world scale.</p>
           <button class="btn-primary" onclick="showView('python-backend')">Explore Backend Hub ↗</button>
         </div>
-        <div class="spec-card">
-          <span class="spec-num">SPECIALIZATION 03</span>
+        <div class="spec-card reveal-up">
           <h3>AI / Machine Learning / Data Science</h3>
-          <p>10-layer Enterprise Digital Twins, Agentic reasoning loops, Vector RAG, MLflow experiment tracking, and Kubernetes MLOps deployment pipelines.</p>
+          <p>Let's explore what I've built in AI / ML — intelligent systems that reason, learn, and decide.</p>
           <button class="btn-primary" onclick="showView('ai-ml')">Explore AI / ML Hub ↗</button>
         </div>
       </div>
@@ -845,18 +939,20 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
       <p class="section-label">06 / Resume</p>
       <h2 class="section-title">Official résumé &amp; qualifications.</h2>
       <p class="section-lede">Preview my single-page PDF résumé or download a local copy directly.</p>
-      <div class="resume-panel">
+      <div class="resume-panel reveal-up">
         <div class="resume-info">
           <h3>Nooh Khan — Computer Science Engineer</h3>
-          <p>B.Tech Computer Science &amp; Engineering candidate (Expected 2027) with hands-on technical achievements across AI/ML digital twin systems, distributed Python microservices, and retail data analytics.</p>
+          <p>CSE student specializing in <strong style="color:var(--sky-light)">Artificial Intelligence and Machine Learning</strong>. Focused on building intelligent, production-ready systems backed by strong fundamentals in data structures, system design, and distributed computing.</p>
           <div style="display:flex;gap:12px;flex-wrap:wrap">
-            <a class="btn-primary" href="assets/Nooh_Khan_Resume.pdf" target="_blank" download="Nooh_Khan_Resume.pdf">Download Resume PDF 📄</a>
+            <a class="btn-primary" href="assets/Nooh_Khan_Resume.docx" target="_blank" download="Nooh_Khan_Resume.docx">Download Resume 📄</a>
             <a class="btn-secondary" href="mailto:noohkhan6387@gmail.com">Contact Directly ✉️</a>
           </div>
         </div>
-        <div class="resume-preview-box">
-          <iframe src="assets/Nooh_Khan_Resume.pdf#toolbar=0" title="Nooh Khan Resume PDF Preview"></iframe>
-        </div>
+        <a class="resume-preview-box" href="assets/Nooh_Khan_Resume.docx" target="_blank" title="Open Résumé">
+          <div class="resume-preview-icon">📄</div>
+          <div class="resume-preview-title">Nooh_Khan_Resume.docx</div>
+          <div class="resume-preview-sub">CLICK TO VIEW RÉSUMÉ ↗</div>
+        </a>
       </div>
     </section>
 
@@ -866,7 +962,7 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
       <h2 class="section-title">Find me across the web.</h2>
       <p class="section-lede" style="margin:0 auto 0;text-align:center">Open to Software Engineering, AI/ML, and Data Analytics roles. Connect on any platform below.</p>
 
-      <div class="connect-links-grid">
+      <div class="connect-links-grid reveal-up">
         <a href="https://github.com/noohkhan7232" target="_blank" rel="noopener" class="connect-link">
           <div class="connect-link-icon gh">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23A11.5 11.5 0 0 1 12 5.8c1.02.005 2.04.138 3 .404 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -887,7 +983,7 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
         </a>
         <a href="https://unstop.com/u/noohkha5461" target="_blank" rel="noopener" class="connect-link">
           <div class="connect-link-icon un">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--emerald-light)"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm-1-5h2v2h-2v-2zm0-8h2v6h-2V7z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00C2A8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4v9a7 7 0 0 0 14 0V4"/><path d="M3 4h4M17 4h4"/></svg>
           </div>
           <span>Unstop</span>
         </a>
@@ -896,6 +992,18 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
             <svg width="20" height="20" viewBox="0 0 24 24" fill="#14AC8C"><path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.546-1.405 0-2.543-1.14-2.543-2.546V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/></svg>
           </div>
           <span>Upwork</span>
+        </a>
+        <a href="#" target="_blank" rel="noopener" class="connect-link">
+          <div class="connect-link-icon ig">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="url(#igGrad)"><defs><linearGradient id="igGrad" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#F09433"/><stop offset="50%" stop-color="#E6683C"/><stop offset="100%" stop-color="#BC1888"/></linearGradient></defs><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </div>
+          <span>Instagram</span>
+        </a>
+        <a href="#" target="_blank" rel="noopener" class="connect-link">
+          <div class="connect-link-icon tw">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </div>
+          <span>X (Twitter)</span>
         </a>
         <a href="mailto:nooh.khan840@gmail.com" class="connect-link">
           <div class="connect-link-icon em">
@@ -970,43 +1078,10 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
         <span class="chip">Python</span><span class="chip">SQL (Window Functions / CTEs)</span><span class="chip">Power BI</span><span class="chip">DAX Measures</span><span class="chip">Pandas &amp; NumPy</span><span class="chip">Matplotlib &amp; Seaborn</span><span class="chip">Exploratory Data Analysis</span><span class="chip">Customer Lifetime Value (CLV)</span><span class="chip">RFM Segmentation</span><span class="chip">Churn Modeling</span><span class="chip">Jupyter Notebook</span><span class="chip">Statistical Analysis</span>
       </div>
 
-      <h2 class="cat-section-title">Featured Projects</h2>
-      <div class="center-timeline-wrap cat-timeline">
-        <div class="center-timeline-line"></div>
-
-        <div class="timeline-row right" data-side="right">
-          <div class="timeline-node-center">01</div>
-          <div class="timeline-card-wrap">
-            <div class="node-card">
-              <div class="node-preview"><img src="assets/dashboard_preview1.png" alt="Customer Purchase Behavior Analytics"></div>
-              <div class="node-cat">Data Analytics &amp; Business Intelligence</div>
-              <div class="node-title">Customer Purchase Behavior Analytics</div>
-              <p class="node-desc">Cleaned and analyzed retail transaction datasets to evaluate subscription lift, promo code effectiveness, and age demographic purchase distributions in Power BI.</p>
-              <div class="node-chips"><span class="node-pill">Python</span><span class="node-pill">SQL</span><span class="node-pill">Power BI</span><span class="node-pill">Pandas</span><span class="node-pill">DAX</span></div>
-              <div class="node-actions">
-                <button class="btn-primary" onclick="showProject('customer-analytics')">View Project ↗</button>
-                <a href="https://github.com/noohkhan7232/Customer-Purchase-Behavior-Analytics.git" target="_blank" class="btn-secondary">GitHub 🔗</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-row left" data-side="left">
-          <div class="timeline-node-center">02</div>
-          <div class="timeline-card-wrap">
-            <div class="node-card">
-              <div class="node-preview"><img src="assets/data-analytics/customer_value_intelligence_preview1.png" alt="Customer Value Intelligence Platform"></div>
-              <div class="node-cat">Customer Intelligence &amp; Predictive Analytics</div>
-              <div class="node-title">Customer Value Intelligence Platform</div>
-              <p class="node-desc">Engineered an RFM customer segmentation engine and predictive Customer Lifetime Value (CLV) churn model to drive targeted marketing retention campaigns.</p>
-              <div class="node-chips"><span class="node-pill">RFM Segmentation</span><span class="node-pill">CLV Modeling</span><span class="node-pill">SQL Windowing</span><span class="node-pill">Python</span></div>
-              <div class="node-actions">
-                <button class="btn-primary" onclick="showProject('customer-value')">View Project ↗</button>
-                <a href="https://github.com/noohkhan7232/Customer-Value-Intelligence-Platform.git" target="_blank" class="btn-secondary">GitHub 🔗</a>
-              </div>
-            </div>
-          </div>
-        </div>
+      <h2 class="cat-section-title">My Journey</h2>
+      <div class="journey-panel reveal-up">
+        <div class="journey-quote-mark">“</div>
+        <p>Let's explore my <strong>Data Analytics</strong> journey — here I learned to turn raw, messy transactional data into structured insight, mastering <strong>SQL</strong> and <strong>Power BI</strong> along the way, and used that understanding to build dashboards and models that actually drive business decisions.</p>
       </div>
     </div>
   </div>
@@ -1042,60 +1117,10 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
         <span class="chip">Python 3.12</span><span class="chip">FastAPI</span><span class="chip">Asyncio</span><span class="chip">RESTful APIs</span><span class="chip">PostgreSQL</span><span class="chip">SQLAlchemy</span><span class="chip">MongoDB</span><span class="chip">Redis Streams</span><span class="chip">RabbitMQ</span><span class="chip">Saga Pattern</span><span class="chip">Pydantic v2</span><span class="chip">Docker &amp; Kubernetes</span><span class="chip">GitHub Actions</span><span class="chip">SSE Streaming</span><span class="chip">AWS Boto3</span>
       </div>
 
-      <h2 class="cat-section-title">Featured Projects</h2>
-      <div class="center-timeline-wrap cat-timeline">
-        <div class="center-timeline-line"></div>
-
-        <div class="timeline-row right" data-side="right">
-          <div class="timeline-node-center">01</div>
-          <div class="timeline-card-wrap">
-            <div class="node-card">
-              <div class="node-preview"><div class="node-preview-ph" style="color:var(--sky-light)">SAGA ORCHESTRATION</div></div>
-              <div class="node-cat">Distributed Microservices</div>
-              <div class="node-title">Event-Driven Order Orchestration System</div>
-              <p class="node-desc">Implemented an Orchestrated Saga Pattern in Python using FastAPI, Redis Streams, and RabbitMQ for distributed transaction rollback consistency with high concurrency.</p>
-              <div class="node-chips"><span class="node-pill">Python</span><span class="node-pill">FastAPI</span><span class="node-pill">Asyncio</span><span class="node-pill">Redis Streams</span><span class="node-pill">PostgreSQL</span></div>
-              <div class="node-actions">
-                <button class="btn-primary" onclick="showProject('order-orchestration')">View Project ↗</button>
-                <a href="https://github.com/noohkhan7232/event-driven-order-orchestration-system" target="_blank" class="btn-secondary">GitHub 🔗</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-row left" data-side="left">
-          <div class="timeline-node-center">02</div>
-          <div class="timeline-card-wrap">
-            <div class="node-card">
-              <div class="node-preview"><div class="node-preview-ph" style="color:var(--emerald-light)">AWS BEDROCK API</div></div>
-              <div class="node-cat">Cloud LLM Middleware</div>
-              <div class="node-title">AWS Bedrock AI Integration Backend</div>
-              <p class="node-desc">Production API middleware providing Server-Sent Events (SSE) streaming token responses from AWS Bedrock foundation models with Pydantic v2 validation.</p>
-              <div class="node-chips"><span class="node-pill">Python</span><span class="node-pill">FastAPI</span><span class="node-pill">AWS Boto3</span><span class="node-pill">Bedrock</span><span class="node-pill">SSE Streaming</span></div>
-              <div class="node-actions">
-                <button class="btn-primary" onclick="showProject('bedrock-backend')">View Project ↗</button>
-                <a href="https://github.com/noohkhan7232/bedrock_backend.git" target="_blank" class="btn-secondary">GitHub 🔗</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-row right" data-side="right">
-          <div class="timeline-node-center">03</div>
-          <div class="timeline-card-wrap">
-            <div class="node-card">
-              <div class="node-preview"><div class="node-preview-ph" style="color:var(--sky-light)">OS SIMULATOR</div></div>
-              <div class="node-cat">Systems &amp; OS Simulation</div>
-              <div class="node-title">Mem-Forge OS (Memory Management Simulator)</div>
-              <p class="node-desc">Low-level operating system simulator modeling virtual memory paging, LRU eviction algorithms, dynamic heap allocators, and process control blocks (PCB).</p>
-              <div class="node-chips"><span class="node-pill">Systems Programming</span><span class="node-pill">Virtual Memory</span><span class="node-pill">LRU Paging</span><span class="node-pill">PCB Scheduling</span></div>
-              <div class="node-actions">
-                <button class="btn-primary" onclick="showProject('mem-forge')">View Project ↗</button>
-                <a href="https://github.com/noohkhan7232/Mem-Forge-OS.git" target="_blank" class="btn-secondary">GitHub 🔗</a>
-              </div>
-            </div>
-          </div>
-        </div>
+      <h2 class="cat-section-title">My Journey</h2>
+      <div class="journey-panel reveal-up">
+        <div class="journey-quote-mark">“</div>
+        <p>Let's explore my <strong>Python Backend</strong> journey — here I went deep into <strong>System Design</strong>, <strong>Operating Systems</strong>, and <strong>Networking</strong>, and turned that understanding into distributed, event-driven backend systems built to handle real-world scale.</p>
       </div>
     </div>
   </div>
@@ -1131,43 +1156,10 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
         <span class="chip">Scikit-Learn</span><span class="chip">TensorFlow</span><span class="chip">Agentic AI (ReAct)</span><span class="chip">LangChain</span><span class="chip">RAG &amp; Vector Search</span><span class="chip">AWS Bedrock SDK</span><span class="chip">MLflow</span><span class="chip">Time-Series Forecasting</span><span class="chip">Auto-EDA</span><span class="chip">Model Registry</span><span class="chip">Docker &amp; Kubernetes</span><span class="chip">GitHub Actions</span><span class="chip">Digital Twins</span><span class="chip">Predictive Modeling</span>
       </div>
 
-      <h2 class="cat-section-title">Featured Projects</h2>
-      <div class="center-timeline-wrap cat-timeline">
-        <div class="center-timeline-line"></div>
-
-        <div class="timeline-row right" data-side="right">
-          <div class="timeline-node-center">01</div>
-          <div class="timeline-card-wrap">
-            <div class="node-card">
-              <div class="node-preview"><img src="assets/ai-ml/Complete_Pipeline.png" alt="Enterprise Digital Twin"></div>
-              <div class="node-cat">10-Layer Systems Architecture</div>
-              <div class="node-title">Enterprise Digital Twin &amp; Decision Intelligence Platform</div>
-              <p class="node-desc">A flagship 10-layer platform unifying state streaming, predictive forecasting, agentic workflows, enterprise RAG, MLflow experiment tracking, and Kubernetes deployment.</p>
-              <div class="node-chips"><span class="node-pill">Digital Twin</span><span class="node-pill">Agentic AI</span><span class="node-pill">RAG</span><span class="node-pill">MLflow</span><span class="node-pill">Kubernetes</span></div>
-              <div class="node-actions">
-                <button class="btn-primary" onclick="showProject('enterprise-digital-twin')">View Project ↗</button>
-                <a href="https://github.com/noohkhan7232/enterprise-digital-twin.git" target="_blank" class="btn-secondary">GitHub 🔗</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-row left" data-side="left">
-          <div class="timeline-node-center">02</div>
-          <div class="timeline-card-wrap">
-            <div class="node-card">
-              <div class="node-preview"><div class="node-preview-ph" style="color:var(--emerald-light)">AUTONOMOUS AGENT</div></div>
-              <div class="node-cat">Autonomous Analytics Agent</div>
-              <div class="node-title">Autonomous Unified Reasoning Data Science Agent</div>
-              <p class="node-desc">An intelligent agent system that autonomously ingests tabular datasets, generates analytical hypotheses, executes automated EDA, selects optimal ML models, and drafts executive reports.</p>
-              <div class="node-chips"><span class="node-pill">Agentic Reasoning</span><span class="node-pill">LangChain</span><span class="node-pill">Auto-EDA</span><span class="node-pill">Scikit-Learn</span></div>
-              <div class="node-actions">
-                <button class="btn-primary" onclick="showProject('autonomous-agent')">View Project ↗</button>
-                <a href="https://github.com/noohkhan7232/Autonomous-Unified-Reasoning-Analytics-Data-Science-Agent.git" target="_blank" class="btn-secondary">GitHub 🔗</a>
-              </div>
-            </div>
-          </div>
-        </div>
+      <h2 class="cat-section-title">My Journey</h2>
+      <div class="journey-panel reveal-up">
+        <div class="journey-quote-mark">“</div>
+        <p>Let's explore my <strong>AI / ML</strong> journey — here I learned how intelligent systems reason, retrieve, and learn from data, and turned that understanding into production-grade agents and digital twins that make decisions on their own.</p>
       </div>
     </div>
   </div>
