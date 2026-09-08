@@ -698,20 +698,19 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
 <!-- NAVIGATION -->
 <header class="site-nav">
   <div class="nav-inner">
-    <div class="brand" onclick="showView('home')">
+    <a href="index.html" class="brand">
       <img src="assets/favicon.png" alt="NK">
       <span>NOOH <span style="color:#7DD3FC">KHAN</span></span>
-    </div>
+    </a>
     <nav class="nav-links">
-      <a onclick="showView('home')" data-view="home" class="active">Home</a>
-      <a onclick="showView('ai-ml')" data-view="ai-ml">AI / ML / DS</a>
-      <a onclick="showView('python-backend')" data-view="python-backend">Python Backend</a>
-      <a onclick="showView('data-analytics')" data-view="data-analytics">Data Analytics</a>
+      <a href="index.html" data-view="home" class="active">Home</a>
+      <a href="ai-ml-data-science.html" data-view="ai-ml">AI / ML / DS</a>
+      <a href="python-backend.html" data-view="python-backend">Python Backend</a>
+      <a href="data-analytics.html" data-view="data-analytics">Data Analytics</a>
       <a onclick="scrollToSection('contact-section')">Contact</a>
     </nav>
     <div style="display:flex;align-items:center;gap:10px">
-      <button class="nav-back-btn" id="navBackBtn" onclick="showView('home')">← Back to Home</button>
-      <a class="nav-resume-btn" href="assets/Nooh_Khan_Resume.pdf" target="_blank">📄 Resume</a>
+      <a class="nav-resume-btn" href="assets/Nooh_Khan_Resume.docx" target="_blank">📄 Resume</a>
     </div>
   </div>
 </header>
@@ -951,17 +950,17 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
         <div class="spec-card reveal-up">
           <h3>Data Analytics</h3>
           <p>Let's explore what I've built in Data Analytics — dashboards, models, and insights shaped from real data.</p>
-          <button class="btn-primary" onclick="showView('data-analytics')">Explore Analytics Hub ↗</button>
+          <a class="btn-primary" href="data-analytics.html">Explore Analytics Hub ↗</a>
         </div>
         <div class="spec-card reveal-up">
           <h3>Python Backend Development</h3>
           <p>Let's explore what I've built in Python Backend — distributed systems engineered for real-world scale.</p>
-          <button class="btn-primary" onclick="showView('python-backend')">Explore Backend Hub ↗</button>
+          <a class="btn-primary" href="python-backend.html">Explore Backend Hub ↗</a>
         </div>
         <div class="spec-card reveal-up">
           <h3>AI / Machine Learning / Data Science</h3>
           <p>Let's explore what I've built in AI / ML — intelligent systems that reason, learn, and decide.</p>
-          <button class="btn-primary" onclick="showView('ai-ml')">Explore AI / ML Hub ↗</button>
+          <a class="btn-primary" href="ai-ml-data-science.html">Explore AI / ML Hub ↗</a>
         </div>
       </div>
     </section>
@@ -1128,123 +1127,6 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
 </div><!-- /view-home -->
 
 <!-- ══════════════════════════════════════════════════════════
-     VIEW: DATA ANALYTICS
-     ══════════════════════════════════════════════════════════ -->
-<div id="view-data-analytics" class="view">
-  <div class="wrap">
-    <div class="cat-hero">
-      <p class="cat-eyebrow">Specialization Hub — Data Analytics</p>
-      <h1 class="cat-title">Data Analytics &amp; Business Intelligence</h1>
-      <p class="cat-lede">Transforming complex raw transactional data into clear business insights. Specialized in Python data wrangling, SQL optimization, dynamic Power BI dashboards, and customer lifetime value modeling.</p>
-    </div>
-
-    <div class="highlights-panel">
-      <div class="panel-label">Relevant Qualifications &amp; Experience</div>
-      <div class="hl-grid">
-        <div class="hl-col"><h4>BCG X (Forage) Virtual Experience</h4><p>Applied exploratory data analysis, statistical modeling, and data-driven customer recommendations for business strategy challenges.</p></div>
-        <div class="hl-col"><h4>British Airways VE Participant</h4><p>Analyzed customer satisfaction and flight operational datasets using Python, Seaborn, and Predictive Modeling techniques.</p></div>
-        <div class="hl-col"><h4>Core Analytics Stack</h4><p>Python (Pandas, NumPy), SQL (CTEs, Window Functions), Power BI (DAX Measures, Dynamic Slicers), Jupyter, Matplotlib, Seaborn.</p></div>
-      </div>
-    </div>
-
-    <div class="cat-section">
-      <h2 class="cat-section-title">Analytics Toolkit</h2>
-      <div class="chip-list" style="margin-bottom:44px">
-        <span class="chip">Python</span><span class="chip">SQL (Window Functions / CTEs)</span><span class="chip">Power BI</span><span class="chip">DAX Measures</span><span class="chip">Pandas &amp; NumPy</span><span class="chip">Matplotlib &amp; Seaborn</span><span class="chip">Exploratory Data Analysis</span><span class="chip">Customer Lifetime Value (CLV)</span><span class="chip">RFM Segmentation</span><span class="chip">Churn Modeling</span><span class="chip">Jupyter Notebook</span><span class="chip">Statistical Analysis</span>
-      </div>
-
-      <h2 class="cat-section-title">My Journey</h2>
-      <div class="journey-panel reveal-up">
-        <div class="journey-quote-mark">“</div>
-        <p>Let's explore my <strong>Data Analytics</strong> journey — here I learned to turn raw, messy transactional data into structured insight, mastering <strong>SQL</strong> and <strong>Power BI</strong> along the way, and used that understanding to build dashboards and models that actually drive business decisions.</p>
-      </div>
-    </div>
-  </div>
-  <footer style="margin-top:60px">
-    <div class="footerBig" style="font-size:clamp(1.5rem,5vw,3.5rem)">DATA ANALYTICS</div>
-    <div class="footerBottom"><span>© 2026 Nooh Khan</span><button onclick="showView('home')" class="btn-secondary" style="font-size:0.7rem;padding:7px 14px">← Back to Homepage</button></div>
-  </footer>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════
-     VIEW: PYTHON BACKEND
-     ══════════════════════════════════════════════════════════ -->
-<div id="view-python-backend" class="view">
-  <div class="wrap">
-    <div class="cat-hero">
-      <p class="cat-eyebrow">Specialization Hub — Python Backend &amp; Systems</p>
-      <h1 class="cat-title">Python Backend &amp; Systems Engineering</h1>
-      <p class="cat-lede">Architecting distributed, asynchronous microservices and low-level system integrations. Focused on high-concurrency event-driven orchestrators, cloud LLM middleware, clean REST APIs, and database efficiency.</p>
-    </div>
-
-    <div class="highlights-panel">
-      <div class="panel-label">Relevant Qualifications &amp; Experience</div>
-      <div class="hl-grid">
-        <div class="hl-col"><h4>Asynchronous Python &amp; APIs</h4><p>Expert in FastAPI, Asyncio, Pydantic v2, RESTful API design, background tasks, and non-blocking I/O event loops.</p></div>
-        <div class="hl-col"><h4>Databases &amp; Message Queues</h4><p>Proficient with PostgreSQL (SQLAlchemy async sessions), MongoDB, Redis Streams, and RabbitMQ message brokers.</p></div>
-        <div class="hl-col"><h4>Containerization &amp; DevOps</h4><p>Experienced with Docker, Docker Compose, Kubernetes manifests, Git workflows, and automated CI/CD pipelines.</p></div>
-      </div>
-    </div>
-
-    <div class="cat-section">
-      <h2 class="cat-section-title">Backend &amp; Systems Toolkit</h2>
-      <div class="chip-list" style="margin-bottom:44px">
-        <span class="chip">Python 3.12</span><span class="chip">FastAPI</span><span class="chip">Asyncio</span><span class="chip">RESTful APIs</span><span class="chip">PostgreSQL</span><span class="chip">SQLAlchemy</span><span class="chip">MongoDB</span><span class="chip">Redis Streams</span><span class="chip">RabbitMQ</span><span class="chip">Saga Pattern</span><span class="chip">Pydantic v2</span><span class="chip">Docker &amp; Kubernetes</span><span class="chip">GitHub Actions</span><span class="chip">SSE Streaming</span><span class="chip">AWS Boto3</span>
-      </div>
-
-      <h2 class="cat-section-title">My Journey</h2>
-      <div class="journey-panel reveal-up">
-        <div class="journey-quote-mark">“</div>
-        <p>Let's explore my <strong>Python Backend</strong> journey — here I went deep into <strong>System Design</strong>, <strong>Operating Systems</strong>, and <strong>Networking</strong>, and turned that understanding into distributed, event-driven backend systems built to handle real-world scale.</p>
-      </div>
-    </div>
-  </div>
-  <footer style="margin-top:60px">
-    <div class="footerBig" style="font-size:clamp(1.5rem,5vw,3.5rem)">PYTHON BACKEND</div>
-    <div class="footerBottom"><span>© 2026 Nooh Khan</span><button onclick="showView('home')" class="btn-secondary" style="font-size:0.7rem;padding:7px 14px">← Back to Homepage</button></div>
-  </footer>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════
-     VIEW: AI / ML / DATA SCIENCE
-     ══════════════════════════════════════════════════════════ -->
-<div id="view-ai-ml" class="view">
-  <div class="wrap">
-    <div class="cat-hero">
-      <p class="cat-eyebrow">Specialization Hub — AI / ML / Data Science</p>
-      <h1 class="cat-title">AI, Machine Learning &amp; Data Science</h1>
-      <p class="cat-lede">Designing intelligent, production-ready systems. From multi-layer digital twins and agentic decision loops to vector retrieval-augmented generation (RAG) and automated MLOps pipelines.</p>
-    </div>
-
-    <div class="highlights-panel">
-      <div class="panel-label">Relevant Qualifications &amp; Experience</div>
-      <div class="hl-grid">
-        <div class="hl-col"><h4>AI Technologies &amp; Frameworks</h4><p>Agentic AI, RAG (Retrieval-Augmented Generation), Scikit-Learn, TensorFlow, Time-Series Predictive Forecasting, Vector Search.</p></div>
-        <div class="hl-col"><h4>MLOps &amp; Lifecycle Governance</h4><p>MLflow experiment tracking, model registry management, data drift monitoring, automated CI quality gates, and Docker/Kubernetes deployment.</p></div>
-        <div class="hl-col"><h4>Lead Flagship Architect</h4><p>Designed and shipped a 10-layer Enterprise Digital Twin &amp; Decision Intelligence Platform additively over 12 weeks with zero regressions.</p></div>
-      </div>
-    </div>
-
-    <div class="cat-section">
-      <h2 class="cat-section-title">AI / ML / Data Science Toolkit</h2>
-      <div class="chip-list" style="margin-bottom:44px">
-        <span class="chip">Scikit-Learn</span><span class="chip">TensorFlow</span><span class="chip">Agentic AI (ReAct)</span><span class="chip">LangChain</span><span class="chip">RAG &amp; Vector Search</span><span class="chip">AWS Bedrock SDK</span><span class="chip">MLflow</span><span class="chip">Time-Series Forecasting</span><span class="chip">Auto-EDA</span><span class="chip">Model Registry</span><span class="chip">Docker &amp; Kubernetes</span><span class="chip">GitHub Actions</span><span class="chip">Digital Twins</span><span class="chip">Predictive Modeling</span>
-      </div>
-
-      <h2 class="cat-section-title">My Journey</h2>
-      <div class="journey-panel reveal-up">
-        <div class="journey-quote-mark">“</div>
-        <p>Let's explore my <strong>AI / ML</strong> journey — here I learned how intelligent systems reason, retrieve, and learn from data, and turned that understanding into production-grade agents and digital twins that make decisions on their own.</p>
-      </div>
-    </div>
-  </div>
-  <footer style="margin-top:60px">
-    <div class="footerBig" style="font-size:clamp(1.5rem,5vw,3.5rem)">AI / ML / DS</div>
-    <div class="footerBottom"><span>© 2026 Nooh Khan</span><button onclick="showView('home')" class="btn-secondary" style="font-size:0.7rem;padding:7px 14px">← Back to Homepage</button></div>
-  </footer>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════
      VIEW: PROJECT DETAIL (dynamic, shared template)
      ══════════════════════════════════════════════════════════ -->
 <div id="view-project" class="view">
@@ -1290,7 +1172,7 @@ function closeWelcome() {
 }
 
 /* ─── SPA VIEW ROUTER ────────────────────────────────────── */
-const VIEWS = ['home','data-analytics','python-backend','ai-ml','project'];
+const VIEWS = ['home','project'];
 function showView(id) {
   VIEWS.forEach(v => {
     const el = document.getElementById('view-' + v);
@@ -1305,9 +1187,6 @@ function showView(id) {
   document.querySelectorAll('.nav-links a[data-view]').forEach(a => {
     a.classList.toggle('active', a.dataset.view === id);
   });
-  // Show/hide back button
-  const backBtn = document.getElementById('navBackBtn');
-  backBtn.classList.toggle('visible', id !== 'home');
   // Run scroll animations for new view
   setTimeout(initScrollAnimations, 100);
   // Hash update

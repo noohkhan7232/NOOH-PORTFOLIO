@@ -103,6 +103,42 @@
     -webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800;
   }
 
+  /* ============ Resume Download Box (after journey) ============ */
+  .resume-box{
+    position:relative;overflow:hidden;margin-top:22px;
+    display:flex;align-items:center;gap:18px;
+    background:linear-gradient(160deg,rgba(14,165,233,0.08),rgba(16,185,129,0.05));
+    border:1px solid var(--line-strong);border-radius:var(--radius);
+    padding:22px 26px;
+    transition:border-color 0.3s ease,transform 0.35s cubic-bezier(.22,1,.36,1),box-shadow 0.3s ease;
+  }
+  .resume-box::before{
+    content:'';position:absolute;top:0;left:-120%;width:55%;height:100%;
+    background:linear-gradient(120deg,transparent,rgba(56,189,248,0.16),transparent);
+    transform:skewX(-20deg);transition:left 0.8s ease;pointer-events:none;
+  }
+  .resume-box:hover::before{left:130%}
+  .resume-box:hover{border-color:var(--sky-light);transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,0.6),0 0 22px var(--sky-glow)}
+  .resume-box-icon{
+    width:48px;height:48px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,var(--sky-primary),#0284C7);font-size:1.35rem;
+    box-shadow:0 6px 18px var(--sky-glow);transition:transform 0.35s cubic-bezier(.34,1.56,.64,1);
+    position:relative;z-index:2;
+  }
+  .resume-box:hover .resume-box-icon{transform:scale(1.1) rotate(-4deg)}
+  .resume-box-text{flex:1;position:relative;z-index:2}
+  .resume-box-title{font-family:var(--display);font-weight:800;font-size:1rem;color:#fff;margin-bottom:3px}
+  .resume-box-sub{font-family:var(--mono);font-size:0.74rem;color:var(--text-muted)}
+  .resume-box-btn{
+    position:relative;z-index:2;flex-shrink:0;
+    display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:6px;
+    background:linear-gradient(135deg,var(--sky-primary),#0284C7);color:#fff;
+    font-family:var(--mono);font-size:0.76rem;font-weight:600;text-transform:uppercase;
+    transition:all 0.2s;box-shadow:0 4px 14px var(--sky-glow);
+  }
+  .resume-box-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(14,165,233,0.4)}
+  @media (max-width:600px){.resume-box{flex-wrap:wrap}.resume-box-btn{width:100%;justify-content:center}}
+
   /* ============ Resume Highlights Panel ============ */
   .highlights-panel{
     position:relative;overflow:hidden;
@@ -254,7 +290,6 @@
       <a href="data-analytics.html">Data Analytics</a>
       <a href="index.html#contact-section">Contact</a>
     </nav>
-    <a class="nav-resume-btn" href="assets/Nooh_Khan_Resume.docx" target="_blank">📄 Resume</a>
   </div>
 </header>
 
@@ -273,6 +308,16 @@
     <div class="journey-quote-mark">"</div>
     <p>Let's explore my <strong>AI / ML</strong> journey — here I learned how intelligent systems reason, retrieve, and learn from data, and turned that understanding into production-grade agents and digital twins that make decisions on their own.</p>
   </div>
+
+  <!-- Resume Download Box — right after journey -->
+  <a class="resume-box reveal-up" href="assets/Nooh_Khan_Resume.docx" download="Nooh_AI_ML_DS.docx" target="_blank">
+    <div class="resume-box-icon">📄</div>
+    <div class="resume-box-text">
+      <div class="resume-box-title">Download Resume</div>
+      <div class="resume-box-sub">Nooh_AI_ML_DS.docx</div>
+    </div>
+    <span class="resume-box-btn">Download ↓</span>
+  </a>
 
   <!-- Resume Highlights -->
   <div class="highlights-panel reveal-up">
@@ -369,7 +414,7 @@
     <a class="footer-link" href="https://github.com/noohkhan7232" target="_blank" rel="noopener">GitHub</a>
     <a class="footer-link" href="https://www.linkedin.com/in/noohkhan/" target="_blank" rel="noopener">LinkedIn</a>
     <a class="footer-link" href="mailto:nooh.khan840@gmail.com">Email Me</a>
-    <a class="footer-link" href="assets/Nooh_Khan_Resume.docx" target="_blank">Download Resume 📄</a>
+    <a class="footer-link" href="assets/Nooh_Khan_Resume.docx" download="Nooh_AI_ML_DS.docx">Download Resume 📄</a>
   </div>
   <div class="footer-big">NOOH KHAN</div>
   <div class="footer-info">© 2026 Nooh Khan · AI / ML / Data Science Specialization · <a href="index.html">Back to Homepage</a></div>
