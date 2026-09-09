@@ -64,45 +64,6 @@
   .page-title { font-family:var(--display); font-size:clamp(2.2rem,5vw,3.2rem); font-weight:800; line-height:1.1; margin-bottom:16px; background:linear-gradient(110deg,#FFF 30%,var(--sky-light) 70%,var(--emerald-light) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .page-lede { font-size:1.05rem; color:var(--text-muted); max-width:780px; line-height:1.7; }
 
-
-  /* ============ Project Detail View — shared interaction with index.html ============ */
-  .view{display:none;animation:viewFade .4s ease}
-  .view.active{display:block}
-  @keyframes viewFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-
-  .proj-hero{padding:50px 0 30px}
-  .proj-breadcrumb{font-family:var(--mono);font-size:.72rem;color:var(--sky-light);text-transform:uppercase;letter-spacing:.07em;margin-bottom:16px;display:flex;align-items:center;gap:6px}
-  .proj-breadcrumb a{color:var(--text-muted);cursor:pointer;transition:color .2s}
-  .proj-breadcrumb a:hover{color:var(--sky-light)}
-  .proj-title{font-family:var(--display);font-size:clamp(2rem,4.2vw,3rem);font-weight:800;line-height:1.15;margin-bottom:16px;background:linear-gradient(110deg,#fff 30%,var(--sky-light) 70%,var(--emerald-light) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .proj-tagline{font-size:1.08rem;color:var(--text-muted);max-width:820px;margin-bottom:28px;line-height:1.7}
-  .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:36px}
-  .meta-box{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;backdrop-filter:blur(8px)}
-  .meta-box .k{font-family:var(--mono);font-size:.65rem;text-transform:uppercase;color:var(--sky-light);letter-spacing:.06em;margin-bottom:4px}
-  .meta-box .v{font-size:.92rem;font-weight:600;color:var(--text-bright)}
-  .proj-actions{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:42px}
-  .content-section{margin-bottom:42px}
-  .content-heading{font-family:var(--display);font-size:1.45rem;font-weight:700;color:#fff;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:9px;display:flex;align-items:center;gap:9px}
-  .content-heading::before{content:'';width:4px;height:18px;background:var(--emerald-light);border-radius:2px}
-  .text-block{color:var(--text-muted);font-size:.98rem;margin-bottom:14px;line-height:1.76}
-  .text-block strong{color:var(--sky-light);font-weight:600}
-  .bullet-list{list-style:none;margin-top:10px}
-  .bullet-list li{position:relative;padding-left:20px;margin-bottom:9px;color:var(--text-muted);font-size:.94rem}
-  .bullet-list li::before{content:'▹';position:absolute;left:0;color:var(--sky-light);font-size:1.05rem;line-height:1}
-  .tech-pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:11px}
-  .tech-pill{font-family:var(--mono);font-size:.72rem;padding:5px 11px;border-radius:4px;background:rgba(14,165,233,.1);border:1px solid rgba(56,189,248,.25);color:var(--sky-light)}
-  .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:22px}
-  .gallery-card{background:var(--bg-card-solid);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .25s,border-color .25s}
-  .gallery-card:hover{transform:translateY(-3px);border-color:var(--sky-light)}
-  .gallery-card img{width:100%;height:auto;display:block}
-  .card-caption{padding:12px 16px;font-family:var(--mono);font-size:.76rem;color:var(--text-muted);display:flex;justify-content:space-between;background:rgba(6,11,18,.8);border-top:1px solid var(--line)}
-  .card-caption .zoom{color:var(--emerald-light);font-weight:600}
-  .project-lightbox{position:fixed;inset:0;z-index:9000;background:rgba(4,8,16,.93);backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease}
-  .project-lightbox.open{opacity:1;pointer-events:auto}
-  .project-lightbox-close{position:absolute;top:18px;right:18px;background:rgba(255,255,255,.06);color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid var(--line);font-family:var(--mono);font-size:1rem;transition:background .2s}
-  .project-lightbox-close:hover{background:var(--sky-primary)}
-  @media(max-width:760px){.meta-grid{grid-template-columns:repeat(2,1fr)}.gallery-grid{grid-template-columns:1fr}}
-
   /* ============ Generic scroll-reveal ============ */
   .reveal-up{opacity:0;transform:translateY(28px);filter:blur(4px);transition:opacity 0.7s cubic-bezier(.22,1,.36,1),transform 0.7s cubic-bezier(.22,1,.36,1),filter 0.7s cubic-bezier(.22,1,.36,1)}
   .reveal-up.revealed{opacity:1;transform:translateY(0);filter:blur(0)}
@@ -260,6 +221,28 @@
     .timeline-row.revealed{transform:translateY(0) scale(1) !important}
   }
 
+  /* ============ Project Detail View ============ */
+  #projectView{display:none;animation:viewFade .4s ease}
+  #projectView.active{display:block}
+  @keyframes viewFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  .proj-hero{padding:50px 0 30px}
+  .proj-breadcrumb{font-family:var(--mono);font-size:.72rem;color:var(--sky-light);text-transform:uppercase;letter-spacing:.07em;margin-bottom:16px;display:flex;align-items:center;gap:6px}
+  .proj-breadcrumb a{color:var(--text-muted);cursor:pointer;transition:color .2s}.proj-breadcrumb a:hover{color:var(--sky-light)}
+  .proj-title{font-family:var(--display);font-size:clamp(2rem,4.2vw,3rem);font-weight:800;line-height:1.15;margin-bottom:16px;background:linear-gradient(110deg,#fff 30%,var(--sky-light) 70%,var(--emerald-light) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .proj-tagline{font-size:1.08rem;color:var(--text-muted);max-width:820px;margin-bottom:28px;line-height:1.7}
+  .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:36px}.meta-box{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;backdrop-filter:blur(8px)}
+  .meta-box .k{font-family:var(--mono);font-size:.65rem;text-transform:uppercase;color:var(--sky-light);letter-spacing:.06em;margin-bottom:4px}.meta-box .v{font-size:.92rem;font-weight:600;color:var(--text-bright)}
+  .proj-actions{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:42px}.content-section{margin-bottom:42px}
+  .content-heading{font-family:var(--display);font-size:1.45rem;font-weight:700;color:#fff;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:9px;display:flex;align-items:center;gap:9px}.content-heading::before{content:'';width:4px;height:18px;background:var(--emerald-light);border-radius:2px}
+  .text-block{color:var(--text-muted);font-size:.98rem;margin-bottom:14px;line-height:1.76}.text-block strong{color:var(--sky-light);font-weight:600}
+  .bullet-list{list-style:none;margin-top:10px}.bullet-list li{position:relative;padding-left:20px;margin-bottom:9px;color:var(--text-muted);font-size:.94rem}.bullet-list li::before{content:'▹';position:absolute;left:0;color:var(--sky-light);font-size:1.05rem;line-height:1}
+  .tech-pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:11px}.tech-pill{font-family:var(--mono);font-size:.72rem;padding:5px 11px;border-radius:4px;background:rgba(14,165,233,.1);border:1px solid rgba(56,189,248,.25);color:var(--sky-light)}
+  .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:22px}.gallery-card{background:var(--bg-card-solid);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .25s,border-color .25s}.gallery-card:hover{transform:translateY(-3px);border-color:var(--sky-light)}.gallery-card img{width:100%;height:auto;display:block}
+  .card-caption{padding:12px 16px;font-family:var(--mono);font-size:.76rem;color:var(--text-muted);display:flex;justify-content:space-between;background:rgba(6,11,18,.8);border-top:1px solid var(--line)}.card-caption .zoom{color:var(--emerald-light);font-weight:600}
+  .project-lightbox{position:fixed;inset:0;z-index:9000;background:rgba(4,8,16,.93);backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease}.project-lightbox.open{opacity:1;pointer-events:auto}
+  .project-lightbox-close{position:absolute;top:18px;right:18px;background:rgba(255,255,255,.06);color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid var(--line);font-family:var(--mono);font-size:1rem}.project-lightbox-close:hover{background:var(--sky-primary)}
+  @media(max-width:760px){.meta-grid{grid-template-columns:repeat(2,1fr)}.gallery-grid{grid-template-columns:1fr}}
+
   /* ============ Footer ============ */
   footer { border-top:1px solid var(--line-strong); padding:50px 0 30px; margin-top:80px; text-align:center; }
   .footer-connect{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:34px}
@@ -294,7 +277,6 @@
   </div>
 </header>
 
-<div id="view-home" class="view active">
 <main class="wrap">
 
   <!-- Hero -->
@@ -437,41 +419,6 @@
   </div><!-- /center-timeline -->
 
 </main>
-</div><!-- /view-home -->
-
-
-<!-- PROJECT DETAIL VIEW -->
-<div id="view-project" class="view">
-  <div class="wrap">
-    <div class="proj-hero">
-      <div class="proj-breadcrumb">
-        <a id="projBreadParent" onclick="showView('home')">Python Backend</a>
-        <span>/</span>
-        <span id="projBreadCurrent">Project</span>
-      </div>
-      <h1 class="proj-title" id="projTitle">Project Title</h1>
-      <p class="proj-tagline" id="projTagline"></p>
-      <div class="meta-grid" id="projMeta"></div>
-      <div class="proj-actions" id="projActions"></div>
-    </div>
-    <div id="projBody"></div>
-  </div>
-  <footer style="margin-top:60px">
-    <div class="footer-connect">
-      <button type="button" onclick="showView('home')" class="btn-secondary">← Back to Python Backend</button>
-    </div>
-  </footer>
-</div>
-
-<!-- PROJECT IMAGE LIGHTBOX -->
-<div class="project-lightbox" id="imgModal" onclick="closeImgModal()">
-  <div style="max-width:1060px;width:100%;position:relative" onclick="event.stopPropagation()">
-    <button type="button" class="project-lightbox-close" onclick="closeImgModal()" aria-label="Close image">✕</button>
-    <div style="border-radius:10px;overflow:hidden;border:1px solid var(--line-strong);background:#000">
-      <img id="imgModalSrc" src="" alt="Project preview" style="width:100%;height:auto;display:block">
-    </div>
-  </div>
-</div>
 
 <footer>
   <div class="footer-connect">
@@ -484,46 +431,54 @@
   <div class="footer-info">© 2026 Nooh Khan · Python Backend Specialization · <a href="index.html">Back to Homepage</a></div>
 </footer>
 
+<!-- PROJECT DETAIL VIEW -->
+<div id="projectView">
+  <div class="wrap">
+    <div class="proj-hero">
+      <div class="proj-breadcrumb"><a id="projBreadParent" onclick="showHome()">Python Backend</a><span>/</span><span id="projBreadCurrent">Project</span></div>
+      <h1 class="proj-title" id="projTitle">Project Title</h1>
+      <p class="proj-tagline" id="projTagline"></p>
+      <div class="meta-grid" id="projMeta"></div>
+      <div class="proj-actions" id="projActions"></div>
+    </div>
+    <div id="projBody"></div>
+  </div>
+  <footer style="margin-top:60px">
+    <div class="footer-connect"><button type="button" onclick="showHome()" class="btn-secondary">← Back to Python Backend</button></div>
+  </footer>
+</div>
+
+<div class="project-lightbox" id="imgModal" onclick="closeImgModal()">
+  <div style="max-width:1060px;width:100%;position:relative" onclick="event.stopPropagation()">
+    <button type="button" class="project-lightbox-close" onclick="closeImgModal()" aria-label="Close image">✕</button>
+    <div style="border-radius:10px;overflow:hidden;border:1px solid var(--line-strong);background:#000"><img id="imgModalSrc" src="" alt="Project preview" style="width:100%;height:auto;display:block"></div>
+  </div>
+</div>
 
 <script>
-function initScrollAnimations() {
-  const rows = document.querySelectorAll('.timeline-row:not(.revealed), .reveal-up:not(.revealed)');
-  if (!rows.length) return;
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-  rows.forEach(r => obs.observe(r));
+function showHome(){
+  document.querySelector('main.wrap').style.display='';
+  const footer=document.querySelector('body > footer'); if(footer) footer.style.display='';
+  document.getElementById('projectView').classList.remove('active');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-
-const VIEWS = ['home','project'];
-function showView(id) {
-  VIEWS.forEach(v => {
-    const el = document.getElementById('view-' + v);
-    if (el) el.classList.remove('active');
-  });
-  const target = document.getElementById('view-' + id);
-  if (target) {
-    target.classList.add('active');
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
-  setTimeout(initScrollAnimations, 100);
+function showProject(id){
+  const p=PROJECTS[id]; if(!p)return;
+  document.querySelector('main.wrap').style.display='none';
+  const footer=document.querySelector('body > footer'); if(footer) footer.style.display='none';
+  document.getElementById('projTitle').textContent=p.title;
+  document.getElementById('projTagline').textContent=p.tagline;
+  document.getElementById('projBreadCurrent').textContent=p.title.substring(0,32)+'…';
+  const parent=document.getElementById('projBreadParent'); parent.textContent=p.parent.label; parent.setAttribute('onclick','showHome()');
+  document.getElementById('projMeta').innerHTML=p.meta.map(m=>`<div class="meta-box"><div class="k">${m.k}</div><div class="v">${m.v}</div></div>`).join('');
+  document.getElementById('projActions').innerHTML=`<a href="${p.github}" target="_blank" rel="noopener" class="btn-primary">View GitHub Repository ↗</a>`;
+  document.getElementById('projBody').innerHTML=p.body;
+  document.getElementById('projectView').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-
-function openImgModal(src) {
-  document.getElementById('imgModalSrc').src = src;
-  document.getElementById('imgModal').classList.add('open');
-}
-function closeImgModal() {
-  document.getElementById('imgModal').classList.remove('open');
-  document.getElementById('imgModalSrc').src = '';
-}
-
-const PROJECTS = {
+function openImgModal(src){document.getElementById('imgModalSrc').src=src;document.getElementById('imgModal').classList.add('open')}
+function closeImgModal(){document.getElementById('imgModal').classList.remove('open');document.getElementById('imgModalSrc').src=''}
+const PROJECTS={
   'order-orchestration': {
     title: 'Event-Driven Order Orchestration System',
     tagline: 'High-concurrency order placement backend implementing the Saga Pattern with non-blocking Asyncio loops, Redis Streams, RabbitMQ message queues, and transactional consistency guarantees.',
@@ -572,7 +527,7 @@ const PROJECTS = {
         </div>
       </div>
     `
-  }
+  },
   'bedrock-backend': {
     title: 'AWS Bedrock AI Integration Backend Service',
     tagline: 'FastAPI microservice middleware connecting frontends with AWS Bedrock foundation models using Server-Sent Events (SSE) streaming responses and Pydantic v2 validation.',
@@ -620,7 +575,7 @@ const PROJECTS = {
         </div>
       </div>
     `
-  }
+  },
   'mem-forge': {
     title: 'Mem-Forge OS (Memory Management Simulator)',
     tagline: 'Operating system simulator modeling virtual memory pagination, dynamic heap allocators, LRU eviction algorithms, and CPU process control blocks — built to demonstrate deep OS-level understanding.',
@@ -670,33 +625,12 @@ const PROJECTS = {
     `
   }
 };
-
-function showProject(id) {
-  const p = PROJECTS[id];
-  if (!p) return;
-  document.getElementById('projTitle').innerHTML = p.title;
-  document.getElementById('projTagline').textContent = p.tagline;
-  document.getElementById('projBreadCurrent').textContent = p.title.substring(0, 32) + '…';
-
-  const parentEl = document.getElementById('projBreadParent');
-  parentEl.textContent = p.parent.label;
-  parentEl.setAttribute('onclick', `showView('${p.parent.view}')`);
-
-  document.getElementById('projMeta').innerHTML = p.meta.map(m =>
-    `<div class="meta-box"><div class="k">${m.k}</div><div class="v">${m.v}</div></div>`
-  ).join('');
-
-  document.getElementById('projActions').innerHTML = `
-    <a href="${p.github}" target="_blank" rel="noopener" class="btn-primary">View GitHub Repository ↗</a>
-  `;
-
-  document.getElementById('projBody').innerHTML = p.body;
-  showView('project');
+function initScrollAnimations(){
+ const rows=document.querySelectorAll('.timeline-row:not(.revealed), .reveal-up:not(.revealed)'); if(!rows.length)return;
+ const obs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('revealed');obs.unobserve(entry.target)}})},{threshold:.15,rootMargin:'0px 0px -60px 0px'}); rows.forEach(r=>obs.observe(r));
 }
-
-document.addEventListener('DOMContentLoaded', initScrollAnimations);
+document.addEventListener('DOMContentLoaded',initScrollAnimations);
 </script>
-
 
 </body>
 </html>
