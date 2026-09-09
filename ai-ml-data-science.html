@@ -450,6 +450,207 @@
       }
     }
 
+
+
+
+ /* ============ Resume Download Box (after journey) ============ */
+    .resume-box {
+      position: relative;
+      overflow: hidden;
+      margin-top: 22px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: linear-gradient(160deg, rgba(14, 165, 233, 0.08), rgba(16, 185, 129, 0.05));
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      padding: 22px 26px;
+      transition: border-color 0.3s ease, transform 0.35s cubic-bezier(.22, 1, .36, 1), box-shadow 0.3s ease;
+    }
+
+    .resume-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 55%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(56, 189, 248, 0.16), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.8s ease;
+      pointer-events: none;
+    }
+
+    .resume-box:hover::before {
+      left: 130%
+    }
+
+    .resume-box:hover {
+      border-color: var(--sky-light);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6), 0 0 22px var(--sky-glow)
+    }
+
+    .resume-box-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--sky-primary), #0284C7);
+      font-size: 1.35rem;
+      box-shadow: 0 6px 18px var(--sky-glow);
+      transition: transform 0.35s cubic-bezier(.34, 1.56, .64, 1);
+      position: relative;
+      z-index: 2;
+    }
+
+    .resume-box:hover .resume-box-icon {
+      transform: scale(1.1) rotate(-4deg)
+    }
+
+    .resume-box-text {
+      flex: 1;
+      position: relative;
+      z-index: 2
+    }
+
+    .resume-box-title {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 3px
+    }
+
+    .resume-box-sub {
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--text-muted)
+    }
+
+    .resume-box-btn {
+      position: relative;
+      z-index: 2;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, var(--sky-primary), #0284C7);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      box-shadow: 0 4px 14px var(--sky-glow);
+    }
+
+    .resume-box-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4)
+    }
+
+    @media (max-width:600px) {
+      .resume-box {
+        flex-wrap: wrap
+      }
+
+      .resume-box-btn {
+        width: 100%;
+        justify-content: center
+      }
+    }
+
+    /* ============ Resume Highlights Panel ============ */
+    .highlights-panel {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-top: 40px;
+      backdrop-filter: blur(10px);
+      transition: border-color 0.35s ease, transform 0.35s cubic-bezier(.22, 1, .36, 1), box-shadow 0.35s ease;
+    }
+
+    .highlights-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--sky-light), var(--emerald-light), var(--sky-primary));
+      background-size: 200% 100%;
+      animation: accentFlow 5s linear infinite;
+    }
+
+    .highlights-panel:hover {
+      border-color: var(--sky-light);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 22px var(--sky-glow)
+    }
+
+    .panel-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      color: var(--sky-light);
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      border-bottom: 1px dashed var(--line);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .hl-col {
+      padding: 6px;
+      border-radius: 8px;
+      transition: background 0.25s ease
+    }
+
+    .hl-col:hover {
+      background: rgba(56, 189, 248, 0.05)
+    }
+
+    .hl-col h4 {
+      font-family: var(--display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 8px;
+    }
+
+    .hl-col p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width:768px) {
+      .highlights-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+
+
+
+
+
     /* ============ Skills Chips ============ */
     .section-heading {
       font-family: var(--display);
@@ -978,6 +1179,20 @@
         <strong>reason, learn, predict, and generate actionable insights</strong>.
       </p>
     </div>
+
+<!-- Resume Download Box — right after journey -->
+    <a class="resume-box reveal-up" href="AI-Ml assets/Nooh_AI_ML_DS_Resume.docx" download="Nooh_AI_ML_DS_Resume" target="_blank">
+      <div class="resume-box-icon">📄</div>
+      <div class="resume-box-text">
+        <div class="resume-box-title">Download Resume</div>
+        <div class="resume-box-sub">Nooh_AI_ML_DS_Resume.docx</div>
+      </div>
+      <span class="resume-box-btn">Download ↓</span>
+    </a>
+
+
+
+
 <!-- Resume Highlights -->
     <div class="highlights-panel reveal-up">
       <div class="panel-label">Relevant Qualifications &amp; Experience</div>
