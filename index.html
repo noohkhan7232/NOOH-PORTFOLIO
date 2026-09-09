@@ -665,7 +665,7 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
   <p class="preloaderTag">SOFTWARE · AI/ML · DATA ANALYTICS</p>
 </div>
 
-<!-- WELCOME MODAL -->
+<!-- WELCOME MODAL
 <div class="modal-overlay" id="welcomeModal">
   <div class="modal-card" style="max-width:560px;text-align:center;border-color:var(--emerald-light);box-shadow:0 0 40px var(--emerald-glow)">
     <span class="modal-close" onclick="closeWelcome()">✕</span>
@@ -675,7 +675,7 @@ footer{padding:55px 0 28px;border-top:1px solid var(--line-strong);text-align:ce
     <p style="font-size:0.96rem;color:var(--text-muted);line-height:1.65;margin-bottom:26px">Computer Science undergraduate building production-grade software — from distributed Python microservices and multi-layer digital twins to retail data analytics engines.</p>
     <button class="btn-primary" onclick="closeWelcome()" style="margin:0 auto;padding:13px 32px;font-size:0.82rem">Enter Portfolio Journey ➔</button>
   </div>
-</div>
+</div> -->
 
 <!-- CERT LIGHTBOX MODAL -->
 <div class="modal-overlay" id="certModal" onclick="closeCertModal()">
@@ -1265,6 +1265,20 @@ const PROJECTS = {
     github: 'https://github.com/noohkhan7232/enterprise-digital-twin.git',
     body: `
       <div class="content-section">
+        <h2 class="content-heading">Project Demo</h2>
+        <p class="text-block">Click any thumbnail below to expand the full view.</p>
+        <div class="gallery-grid">
+          <div class="gallery-card" onclick="openImgModal('assets/projects/demo/enterprise-digital-twin-1.png')">
+            <img src="assets/projects/demo/enterprise-digital-twin-1.png" alt="Enterprise Digital Twin Demo 1">
+            <div class="card-caption"><span>Demo View 1</span><span class="zoom">Expand ↗</span></div>
+          </div>
+          <div class="gallery-card" onclick="openImgModal('assets/projects/demo/enterprise-digital-twin-2.png')">
+            <img src="assets/projects/demo/enterprise-digital-twin-2.png" alt="Enterprise Digital Twin Demo 2">
+            <div class="card-caption"><span>Demo View 2</span><span class="zoom">Expand ↗</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="content-section">
         <h2 class="content-heading">Project Overview &amp; Problem Statement</h2>
         <p class="text-block">Modern industrial and enterprise environments generate massive continuous telemetry, but legacy systems struggle to turn raw IoT and transactional data into active decision-making intelligence. Siloed machine learning models often lack contextual knowledge, while static monitoring dashboards fail to simulate future states or trigger automated actions.</p>
         <p class="text-block"><strong>The Solution:</strong> The Enterprise Digital Twin & Decision Intelligence Platform bridges this gap. It synchronizes live asset state data with continuous forecasting strategies, grounds LLM responses with enterprise RAG knowledge, executes agentic perceive-deliberate-act workflows, and guarantees operational reliability through an MLOps lifecycle with automated model drift monitoring and Kubernetes deployment.</p>
@@ -1363,6 +1377,20 @@ const PROJECTS = {
     github: 'https://github.com/noohkhan7232/event-driven-order-orchestration-system',
     body: `
       <div class="content-section">
+        <h2 class="content-heading">Project Demo</h2>
+        <p class="text-block">Click any thumbnail below to expand the full view.</p>
+        <div class="gallery-grid">
+          <div class="gallery-card" onclick="openImgModal('assets/projects/demo/order-orchestration-1.png')">
+            <img src="assets/projects/demo/order-orchestration-1.png" alt="Event-Driven Order Orchestration Demo 1">
+            <div class="card-caption"><span>Demo View 1</span><span class="zoom">Expand ↗</span></div>
+          </div>
+          <div class="gallery-card" onclick="openImgModal('assets/projects/demo/order-orchestration-2.png')">
+            <img src="assets/projects/demo/order-orchestration-2.png" alt="Event-Driven Order Orchestration Demo 2">
+            <div class="card-caption"><span>Demo View 2</span><span class="zoom">Expand ↗</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="content-section">
         <h2 class="content-heading">Overview &amp; Problem Statement</h2>
         <p class="text-block">Distributed order management in microservices introduces complex consistency challenges — network failures, partial completions, and race conditions can leave data in inconsistent states. Traditional ACID transactions do not span service boundaries.</p>
         <p class="text-block"><strong>The Solution:</strong> An event-driven Saga orchestration system that coordinates distributed transactions across multiple microservices using compensating transactions and Redis Streams for reliable event delivery.</p>
@@ -1397,6 +1425,20 @@ const PROJECTS = {
     ],
     github: 'https://github.com/noohkhan7232/Autonomous-Unified-Reasoning-Analytics-Data-Science-Agent.git',
     body: `
+      <div class="content-section">
+        <h2 class="content-heading">Project Demo</h2>
+        <p class="text-block">Click any thumbnail below to expand the full view.</p>
+        <div class="gallery-grid">
+          <div class="gallery-card" onclick="openImgModal('assets/projects/demo/autonomous-agent-1.png')">
+            <img src="assets/projects/demo/autonomous-agent-1.png" alt="Autonomous Reasoning Agent Demo 1">
+            <div class="card-caption"><span>Demo View 1</span><span class="zoom">Expand ↗</span></div>
+          </div>
+          <div class="gallery-card" onclick="openImgModal('assets/projects/demo/autonomous-agent-2.png')">
+            <img src="assets/projects/demo/autonomous-agent-2.png" alt="Autonomous Reasoning Agent Demo 2">
+            <div class="card-caption"><span>Demo View 2</span><span class="zoom">Expand ↗</span></div>
+          </div>
+        </div>
+      </div>
       <div class="content-section">
         <h2 class="content-heading">Overview &amp; Objective</h2>
         <p class="text-block">Data science workflows are time-intensive and repetitive — EDA, feature engineering, and model selection require hours of manual effort. This project automates the full data science lifecycle through an intelligent multi-step AI agent.</p>
@@ -1433,6 +1475,20 @@ const PROJECTS = {
     github: 'https://github.com/noohkhan7232/bedrock_backend.git',
     body: `
       <div class="content-section">
+        <h2 class="content-heading">Project Demo</h2>
+        <p class="text-block">Click any thumbnail below to expand the full view.</p>
+        <div class="gallery-grid">
+          <div class="gallery-card" onclick="openImgModal('assets/projects/demo/bedrock-backend-1.png')">
+            <img src="assets/projects/demo/bedrock-backend-1.png" alt="Bedrock AI Integration Backend Demo 1">
+            <div class="card-caption"><span>Demo View 1</span><span class="zoom">Expand ↗</span></div>
+          </div>
+          <div class="gallery-card" onclick="openImgModal('assets/projects/demo/bedrock-backend-2.png')">
+            <img src="assets/projects/demo/bedrock-backend-2.png" alt="Bedrock AI Integration Backend Demo 2">
+            <div class="card-caption"><span>Demo View 2</span><span class="zoom">Expand ↗</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="content-section">
         <h2 class="content-heading">Overview</h2>
         <p class="text-block">This service acts as a production middleware layer between client applications and AWS Bedrock's foundation model APIs. It handles authentication, request routing, streaming response management, and validation — abstracting the complexity of AWS Bedrock integration into a clean REST interface.</p>
       </div>
@@ -1467,6 +1523,20 @@ const PROJECTS = {
     github: 'https://github.com/noohkhan7232/Customer-Value-Intelligence-Platform.git',
     body: `
       <div class="content-section">
+        <h2 class="content-heading">Project Demo</h2>
+        <p class="text-block">Click any thumbnail below to expand the full view.</p>
+        <div class="gallery-grid">
+          <div class="gallery-card" onclick="openImgModal('assets/projects/demo/customer-value-1.png')">
+            <img src="assets/projects/demo/customer-value-1.png" alt="Customer Value Intelligence Platform Demo 1">
+            <div class="card-caption"><span>Demo View 1</span><span class="zoom">Expand ↗</span></div>
+          </div>
+          <div class="gallery-card" onclick="openImgModal('assets/projects/demo/customer-value-2.png')">
+            <img src="assets/projects/demo/customer-value-2.png" alt="Customer Value Intelligence Platform Demo 2">
+            <div class="card-caption"><span>Demo View 2</span><span class="zoom">Expand ↗</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="content-section">
         <h2 class="content-heading">Overview &amp; Objective</h2>
         <p class="text-block">Understanding customer value and churn risk is critical for marketing strategy. This platform combines three analytical frameworks — RFM segmentation, CLV predictive modeling, and churn vulnerability scoring — into a unified customer intelligence engine.</p>
       </div>
@@ -1499,6 +1569,20 @@ const PROJECTS = {
     ],
     github: 'https://github.com/noohkhan7232/Mem-Forge-OS.git',
     body: `
+      <div class="content-section">
+        <h2 class="content-heading">Project Demo</h2>
+        <p class="text-block">Click any thumbnail below to expand the full view.</p>
+        <div class="gallery-grid">
+          <div class="gallery-card" onclick="openImgModal('assets/projects/demo/mem-forge-1.png')">
+            <img src="assets/projects/demo/mem-forge-1.png" alt="Mem-Forge OS Demo 1">
+            <div class="card-caption"><span>Demo View 1</span><span class="zoom">Expand ↗</span></div>
+          </div>
+          <div class="gallery-card" onclick="openImgModal('assets/projects/demo/mem-forge-2.png')">
+            <img src="assets/projects/demo/mem-forge-2.png" alt="Mem-Forge OS Demo 2">
+            <div class="card-caption"><span>Demo View 2</span><span class="zoom">Expand ↗</span></div>
+          </div>
+        </div>
+      </div>
       <div class="content-section">
         <h2 class="content-heading">Overview</h2>
         <p class="text-block">Mem-Forge OS is a software simulator that replicates core operating system memory management behaviors. It demonstrates mastery of low-level computer science concepts without requiring hardware or kernel-level access.</p>
@@ -1539,7 +1623,6 @@ function showProject(id) {
   // Actions
   document.getElementById('projActions').innerHTML = `
     <a href="${p.github}" target="_blank" rel="noopener" class="btn-primary">View GitHub Repository ↗</a>
-    <a href="assets/Nooh_Khan_Resume.pdf" target="_blank" rel="noopener" class="btn-secondary">Download Résumé PDF 📄</a>
   `;
   document.getElementById('projBody').innerHTML = p.body;
   showView('project');
